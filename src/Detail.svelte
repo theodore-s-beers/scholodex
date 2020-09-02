@@ -28,12 +28,12 @@
 
 <style>
   .backButton {
-    margin-right: 4em;
+    margin-right: 3em;
   }
   .buttons {
     display: flex;
     flex-flow: row nowrap;
-    font-size: small;
+    font-size: 90%;
     justify-content: center;
     margin-top: auto;
   }
@@ -72,9 +72,12 @@
     margin-right: 0.5em;
   }
   .xButton {
-    font-size: x-small;
+    font-size: 45%;
     margin-left: auto;
-    width: 2em;
+  }
+  .xButton button {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 </style>
 

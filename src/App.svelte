@@ -59,7 +59,7 @@
     margin-right: 1em;
   }
   .title {
-    font-size: xx-large;
+    font-size: 200%;
     line-height: 105%;
     margin-right: 0.6em;
     color: darkgreen;
@@ -73,7 +73,7 @@
 </svelte:head>
 
 <header>
-  <div class="title"><em>Scholodex</em></div>
+  <div class="title">Scholodex</div>
   <div class="newCardButton">
     <button on:click={newCard} disabled={$selectedItem || $editing}>New</button>
   </div>
