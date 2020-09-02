@@ -14,15 +14,6 @@
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
   }
 
-  const emailString: string = email;
-  let emailStringFixed: string;
-
-  if (emailString.length > 24) {
-    emailStringFixed = emailString.substr(0, 24) + "…";
-  } else {
-    emailStringFixed = emailString;
-  }
-
   function selectItem() {
     $selectedItem = $cards.find((x) => x.id === id);
   }
@@ -30,7 +21,8 @@
 
 <style>
   button {
-    width: 2em;
+    width: 1.5rem;
+    height: 1.5rem;
   }
   .affilRow {
     margin-bottom: 0.5em;
@@ -63,19 +55,19 @@
     margin-bottom: 0.5em;
   }
   .moreButton {
-    font-size: x-small;
+    font-size: 45%;
     margin: auto 0 0 auto;
   }
   .nameRow {
     display: flex;
-    font-size: x-large;
+    font-size: 150%;
     margin-bottom: 0.5em;
   }
   .surname {
     margin-right: 0.5em;
   }
   .xButton {
-    font-size: x-small;
+    font-size: 45%;
     margin-left: auto;
   }
 </style>
@@ -96,7 +88,7 @@
   </div>
   <div class="emailRow">
     <div class="fieldLabel"><em>email</em></div>
-    <div><a href="mailto:{email}">{emailStringFixed}</a></div>
+    <div><a href="mailto:{email}">{email}</a></div>
   </div>
   <div class="moreButton"><button on:click={selectItem}>→</button></div>
 </div>

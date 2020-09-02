@@ -1,6 +1,7 @@
 body {
   color: #333;
-  font-family: Lora, serif;
+  font-family: "EB Garamond", serif;
+  font-size: 105%;
   max-width: 350px;
   margin: auto;
   padding: 1em;
