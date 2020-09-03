@@ -69,9 +69,9 @@
 </style>
 
 <svelte:head>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap"
-    rel="stylesheet" />
+  <meta
+    name="description"
+    content="A simple address book app, tailored to the needs of academics. Written in Svelte with TypeScript." />
 </svelte:head>
 
 <header>
