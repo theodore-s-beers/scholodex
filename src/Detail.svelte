@@ -2,13 +2,16 @@
   import { fade } from "svelte/transition";
   import { cards, current, editing, selectedItem } from "./stores.svelte";
 
-  export let affiliations: string[];
+  export let affiliations: string;
   export let email: string;
-  export let fields: string[];
+  export let fields: string;
   export let givenNames: string;
   export let id: string;
   export let index: number;
   export let surname: string;
+
+  const affiliationsArray = affiliations.toString().split(",");
+  const fieldsArray = fields.toString().split(",");
 
   function removeButton() {
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
@@ -90,7 +93,7 @@
   <div class="normalRow">
     <div class="fieldLabel"><em>affil.</em></div>
     <div>
-      {#each affiliations as affiliation}
+      {#each affiliationsArray as affiliation}
         <div>{affiliation}</div>
       {/each}
     </div>
@@ -100,7 +103,7 @@
       <em>{fields.length > 1 ? 'fields' : 'field'}</em>
     </div>
     <div>
-      {#each fields as field}
+      {#each fieldsArray as field}
         <div>{field}</div>
       {/each}
     </div>

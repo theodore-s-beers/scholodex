@@ -18,8 +18,8 @@
       id: "",
       surname: "",
       givenNames: "",
-      affiliations: [],
-      fields: [],
+      affiliations: "",
+      fields: "",
       email: "",
     };
     $selectedItem = null;
@@ -33,6 +33,8 @@
       return;
     }
   }
+
+  loadSample();
 
   $: cardsBySurname = $cards.sort(complexCompare);
 
@@ -89,11 +91,8 @@
     <Editor
       surname={$current.surname}
       givenNames={$current.givenNames}
-      affiliationOne={$current.affiliations[0]}
-      affiliationTwo={$current.affiliations[1] ? $current.affiliations[1] : ''}
-      fieldOne={$current.fields[0]}
-      fieldTwo={$current.fields[1] ? $current.fields[1] : ''}
-      fieldThree={$current.fields[2] ? $current.fields[2] : ''}
+      affiliations={$current.affiliations}
+      fields={$current.fields}
       email={$current.email} />
   {:else if $selectedItem}
     <Detail
@@ -112,8 +111,8 @@
           id={card.id}
           surname={card.surname}
           givenNames={card.givenNames}
-          affiliation={card.affiliations[0]}
-          field={card.fields[0]}
+          affiliations={card.affiliations}
+          fields={card.fields}
           email={card.email} />
       {/each}
     </div>

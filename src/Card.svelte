@@ -2,13 +2,16 @@
   import { fade } from "svelte/transition";
   import { cards, selectedItem } from "./stores.svelte";
 
+  export let affiliations: string;
   export let email: string;
-  export let field: string;
+  export let fields: string;
   export let givenNames: string;
   export let id: string;
   export let index: number;
-  export let affiliation: string;
   export let surname: string;
+
+  const primaryAffil = affiliations.toString().split(",")[0];
+  const primaryField = fields.toString().split(",")[0];
 
   function removeButton() {
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
@@ -80,11 +83,11 @@
   </div>
   <div class="affilRow">
     <div class="fieldLabel"><em>affil.</em></div>
-    <div>{affiliation}</div>
+    <div>{primaryAffil}</div>
   </div>
   <div class="fieldsRow">
     <div class="fieldLabel"><em>field</em></div>
-    <div>{field}</div>
+    <div>{primaryField}</div>
   </div>
   <div class="emailRow">
     <div class="fieldLabel"><em>email</em></div>

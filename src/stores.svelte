@@ -6,8 +6,8 @@
     id: "",
     surname: "",
     givenNames: "",
-    affiliations: [],
-    fields: [],
+    affiliations: "",
+    fields: "",
     email: "",
   });
   export const editing = writable(false);

@@ -4,14 +4,18 @@
   import { v4 as uuidv4 } from "uuid";
   import { cards, current, editing, selectedItem } from "./stores.svelte";
 
-  export let affiliationOne: string = "";
-  export let affiliationTwo: string = "";
-  export let email: string = "";
-  export let fieldOne: string = "";
-  export let fieldTwo: string = "";
-  export let fieldThree: string = "";
-  export let givenNames: string = "";
-  export let surname: string = "";
+  export let affiliations: string;
+  export let email = "";
+  export let fields: string;
+  export let givenNames = "";
+  export let surname = "";
+
+  let affiliationOne = affiliations.toString().split(",")[0];
+  let affiliationTwo = affiliations.toString().split(",")[1];
+
+  let fieldOne = fields.toString().split(",")[0];
+  let fieldTwo = fields.toString().split(",")[1];
+  let fieldThree = fields.toString().split(",")[2];
 
   const newId = uuidv4();
 
@@ -24,12 +28,16 @@
         surname: surname,
         givenNames: givenNames,
         affiliations: affiliationTwo
-          ? [affiliationOne, affiliationTwo]
-          : [affiliationOne],
+          ? affiliationOne + "," + affiliationTwo
+          : affiliationOne,
         fields:
-          !fieldTwo && !fieldThree
-            ? [fieldOne]
-            : [fieldOne, fieldTwo, fieldThree].filter((x) => x.length > 0),
+          fieldTwo && fieldThree
+            ? fieldOne + "," + fieldTwo + "," + fieldThree
+            : fieldThree
+            ? fieldOne + "," + fieldThree
+            : fieldTwo
+            ? fieldOne + "," + fieldTwo
+            : fieldOne,
         email: email,
       });
       if ($current.id) {
@@ -56,8 +64,8 @@
       id: "",
       surname: "",
       givenNames: "",
-      affiliations: [],
-      fields: [],
+      affiliations: "",
+      fields: "",
       email: "",
     };
     $editing = false;
