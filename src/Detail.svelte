@@ -13,6 +13,11 @@
   const affilArray = affiliations.toString().split(",");
   const fieldsArray = fields.toString().split(",");
 
+  function backHome() {
+    $selectedItem = null;
+    window.location.hash = "home";
+  }
+
   function deleteCard() {
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
     $selectedItem = null;
@@ -113,11 +118,7 @@
     <div><a href="mailto:{email}">{email}</a></div>
   </div>
   <div class="buttons">
-    <div>
-      <button
-        class="backButton"
-        on:click={() => ($selectedItem = null)}>Back</button>
-    </div>
+    <div><button class="backButton" on:click={backHome}>Back</button></div>
     <div><button on:click={fillGaps}>Edit</button></div>
   </div>
 </div>

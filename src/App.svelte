@@ -1,13 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import {
-    cards,
-    current,
-    editing,
-    expanded,
-    resultCards,
-    selectedItem,
-  } from "./stores.svelte";
+  import { cards, current, editing, selectedItem } from "./stores.svelte";
   import { complexCompare, sampleCards, searchCards } from "./utils.svelte";
 
   import Card from "./Card.svelte";
@@ -26,7 +19,7 @@
     $cards = [];
   }
 
-  // Function to load the sample set, if there are no cards
+  // Function to load sample set, if no existing cards
   function loadSample() {
     if ($cards.length === 0) {
       $cards = sampleCards;
@@ -45,41 +38,38 @@
   // Searching
   //
 
-  // Function to toggle the search field
-  // When the search field is dismissed, so are results
-  function expand() {
-    $expanded = !$expanded;
-    if (!$expanded) {
-      $resultCards = [];
-    }
-  }
+  // Variable for toggling search field
+  let expanded = false;
 
-  // Reactive variable for the search term
-  // It should be cleared whenever the search field disappears
-  $: searchTerm = !$expanded ? "" : "";
+  // Reactive variable for search results
+  // Should be cleared whenever search field disappears
+  $: resultCards = !expanded ? [] : [];
+
+  // Reactive variable for search term
+  // Should be cleared whenever search field disappears
+  $: searchTerm = !expanded ? "" : "";
 
   // Function for keydown event in search field
   function handleSearch(event: KeyboardEvent) {
     if (event.key === "Enter") {
       carryOutSearch();
     } else if (event.key === "Escape" || event.key === "Esc") {
-      $expanded = false;
-      $resultCards = [];
+      expanded = false;
     } else {
       return;
     }
   }
 
-  // Function to actually carry out the search
+  // Function to actually carry out a search
   // Clear prior results
   // Get array of indices from utility function
   // Push cards with those indices into results array
   function carryOutSearch() {
-    $resultCards = [];
+    resultCards = [];
     const results = searchCards($cards, searchTerm);
     for (let i = 0; i < results.length; i++) {
       let desiredCard = $cards[results[i]];
-      $resultCards.push(desiredCard);
+      resultCards.push(desiredCard);
     }
   }
 
@@ -90,7 +80,7 @@
   // Function for creating new card
   // Set "current" card to all blank values
   // Switch to editing mode
-  // Disable/reset other state items
+  // Reset other state values
   function newCard() {
     $current = {
       id: "",
@@ -101,9 +91,23 @@
       email: "",
     };
     $editing = true;
-    $expanded = false;
-    $resultCards = [];
     $selectedItem = null;
+    expanded = false;
+  }
+
+  // Listen for hashchange when selecting a card
+  window.addEventListener("hashchange", updateView);
+
+  // Update view to expand selected card
+  function updateView() {
+    if (window.location.hash.length > 5) {
+      $selectedItem = $cards.find(
+        (x) => x.id === window.location.hash.substring(1)
+      );
+      if ($selectedItem) {
+        expanded = false;
+      }
+    }
   }
 
   // Try to save cards to local storage, in a reactive manner
@@ -135,9 +139,6 @@
   .nonFinalButton {
     height: 2.3em;
   }
-  .nonFinalButtonWrapper {
-    margin-right: 1em;
-  }
   .searchBar {
     width: 100%;
     padding-right: 35px;
@@ -150,9 +151,9 @@
     flex-flow: row nowrap;
   }
   .searchButton {
-    margin-left: -28px;
-    margin-top: 2px;
+    margin-left: -30px;
     padding: 0;
+    padding-top: 3px;
     border: none;
     background: none;
     transform: rotate(-45deg);
@@ -166,8 +167,14 @@
   .title {
     font-size: 200%;
     line-height: 105%;
-    margin-right: 0.5em;
+    margin-right: 0.2em;
     color: darkgreen;
+  }
+  .title a {
+    color: darkgreen;
+  }
+  .title a:hover {
+    text-decoration: none;
   }
   @media (min-width: 768px) {
     .searchBarWrapper {
@@ -183,7 +190,7 @@
 </svelte:head>
 
 <header>
-  <div class="title">Scholodex</div>
+  <div class="title"><a href="/">Scholodex</a></div>
   <div class="nonFinalButtonWrapper">
     <button
       class="nonFinalButton"
@@ -200,15 +207,13 @@
     <button
       class="expandButton"
       disabled={$selectedItem || $editing}
-      on:click={expand}>
-      {#if $expanded && !$selectedItem && !$editing}
-        <span in:fade>▼</span>
-      {:else}<span in:fade>▷</span>{/if}
+      on:click={() => (expanded = !expanded)}>
+      {#if expanded}<span in:fade>▼</span>{:else}<span in:fade>▷</span>{/if}
     </button>
   </div>
 </header>
 
-{#if $expanded && !$selectedItem && !$editing}
+{#if expanded}
   <div class="searchBarWrapper" in:fade>
     <input
       class="searchBar"
@@ -239,8 +244,8 @@
       email={$selectedItem.email} />
   {:else}
     <div class="cards" in:fade>
-      {#if $resultCards.length > 0}
-        {#each $resultCards as card, index (card.id)}
+      {#if resultCards.length > 0}
+        {#each resultCards as card, index (card.id)}
           <Card
             {index}
             id={card.id}

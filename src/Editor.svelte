@@ -17,7 +17,29 @@
   let fieldTwo = fields.toString().split(",")[1];
   let fieldThree = fields.toString().split(",")[2];
 
+  let surnameField: HTMLInputElement;
+
   const newId = uuidv4();
+
+  function backHome() {
+    $current = {
+      id: "",
+      surname: "",
+      givenNames: "",
+      affiliations: "",
+      fields: "",
+      email: "",
+    };
+    $editing = false;
+  }
+
+  function deleteOld() {
+    let deprecated = $cards.find((x) => x.id === $current.id);
+    let deprecatedIndex = $cards.indexOf(deprecated);
+    $cards = $cards
+      .slice(0, deprecatedIndex)
+      .concat($cards.slice(deprecatedIndex + 1));
+  }
 
   function generateCard() {
     if (!surname || !givenNames || !affiliationOne || !fieldOne || !email) {
@@ -43,29 +65,10 @@
       if ($current.id) {
         deleteOld();
         $selectedItem = $cards.find((x) => x.id === newId);
+        window.location.hash = $selectedItem.id;
       }
       backHome();
     }
-  }
-
-  function deleteOld() {
-    let deprecated = $cards.find((x) => x.id === $current.id);
-    let deprecatedIndex = $cards.indexOf(deprecated);
-    $cards = $cards
-      .slice(0, deprecatedIndex)
-      .concat($cards.slice(deprecatedIndex + 1));
-  }
-
-  function backHome() {
-    $current = {
-      id: "",
-      surname: "",
-      givenNames: "",
-      affiliations: "",
-      fields: "",
-      email: "",
-    };
-    $editing = false;
   }
 
   function handleKeydown(event: KeyboardEvent) {
@@ -77,8 +80,6 @@
       return;
     }
   }
-
-  let surnameField: HTMLInputElement;
 
   onMount(() => {
     if (!surname) {
