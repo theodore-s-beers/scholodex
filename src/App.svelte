@@ -62,6 +62,8 @@
   function handleSearch(event: KeyboardEvent) {
     if (event.key === "Enter") {
       carryOutSearch();
+      // Trying to fix an issue in iOS
+      event.preventDefault();
     } else if (event.key === "Escape" || event.key === "Esc") {
       $expanded = false;
       $resultCards = [];
@@ -118,6 +120,8 @@
   header {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
+    max-width: 334px;
     margin: 0.5em 0 1em 0;
   }
   .cards {
@@ -127,9 +131,13 @@
     margin-left: -1em;
   }
   .expandButton {
-    width: 2em;
+    width: 2.3em;
+    height: 2.3em;
   }
   .nonFinalButton {
+    height: 2.3em;
+  }
+  .nonFinalButtonWrapper {
     margin-right: 1em;
   }
   .searchBar {
@@ -160,13 +168,17 @@
 
 <header>
   <div class="title">Scholodex</div>
-  <div class="nonFinalButton">
-    <button on:click={newCard} disabled={$selectedItem || $editing}>New</button>
-  </div>
-  <div class="nonFinalButton">
+  <div class="nonFinalButtonWrapper">
     <button
-      on:click={loadSample}
-      disabled={$cards.length > 0 || $editing}>Sample</button>
+      class="nonFinalButton"
+      disabled={$selectedItem || $editing}
+      on:click={newCard}>New</button>
+  </div>
+  <div class="nonFinalButtonWrapper">
+    <button
+      class="nonFinalButton"
+      disabled={$cards.length > 0 || $editing}
+      on:click={loadSample}>Sample</button>
   </div>
   <div>
     <button
@@ -175,7 +187,7 @@
       on:click={expand}>
       {#if $expanded && !$selectedItem && !$editing}
         <span in:fade>▼</span>
-      {:else}<span in:fade>◁</span>{/if}
+      {:else}<span in:fade>▷</span>{/if}
     </button>
   </div>
 </header>
