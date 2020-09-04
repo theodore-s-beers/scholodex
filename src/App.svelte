@@ -147,13 +147,16 @@
     margin-bottom: 1em;
     width: 334px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
   }
   .searchButton {
-    margin-left: -30px;
+    margin-left: -28px;
+    margin-top: 2px;
     padding: 0;
     border: none;
     background: none;
+    transform: rotate(-45deg);
+    font-size: 125%;
   }
   .searchButton:focus,
   .searchButton:active {
@@ -213,7 +216,7 @@
       bind:value={searchTerm}
       on:keydown={handleSearch} /><button
       class="searchButton"
-      on:click={carryOutSearch}>🔍</button>
+      on:click={carryOutSearch}>⚲</button>
   </div>
 {/if}
 
