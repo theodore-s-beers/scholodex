@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { v4 as uuidv4 } from "uuid";
 
-  export interface ContactCard {
+  interface ContactCard {
     id: string;
     surname: string;
     givenNames: string;
@@ -70,12 +70,15 @@
   }
 
   export function searchCards(cards: ContactCard[], needle: string) {
-    let results: ContactCard[] = [];
+    let needleNormalized = needle.trim().toLowerCase();
+    let results: number[] = [];
     for (let i = 0; i < cards.length; i++) {
       for (let key in cards[i]) {
-        if (cards[i][key].indexOf(needle) !== -1) {
-          results = results.concat(cards[i]);
-          break;
+        if (key !== "id") {
+          if (cards[i][key].toLowerCase().indexOf(needleNormalized) !== -1) {
+            results.push(i);
+            break;
+          }
         }
       }
     }

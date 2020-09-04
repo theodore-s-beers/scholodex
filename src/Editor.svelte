@@ -57,9 +57,6 @@
   }
 
   function backHome() {
-    if (!$current.id) {
-      $selectedItem = null;
-    }
     $current = {
       id: "",
       surname: "",

@@ -10,10 +10,10 @@
   export let index: number;
   export let surname: string;
 
-  const affiliationsArray = affiliations.toString().split(",");
+  const affilArray = affiliations.toString().split(",");
   const fieldsArray = fields.toString().split(",");
 
-  function removeButton() {
+  function deleteCard() {
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
     $selectedItem = null;
   }
@@ -88,12 +88,12 @@
   <div class="nameRow">
     <div class="surname"><strong>{surname}</strong></div>
     <div>{givenNames}</div>
-    <div class="xButton"><button on:click={removeButton}>✕</button></div>
+    <div class="xButton"><button on:click={deleteCard}>✕</button></div>
   </div>
   <div class="normalRow">
     <div class="fieldLabel"><em>affil.</em></div>
     <div>
-      {#each affiliationsArray as affiliation}
+      {#each affilArray as affiliation}
         <div>{affiliation}</div>
       {/each}
     </div>

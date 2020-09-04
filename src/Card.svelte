@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { cards, selectedItem } from "./stores.svelte";
+  import { cards, expanded, resultCards, selectedItem } from "./stores.svelte";
 
   export let affiliations: string;
   export let email: string;
@@ -13,12 +13,14 @@
   const primaryAffil = affiliations.toString().split(",")[0];
   const primaryField = fields.toString().split(",")[0];
 
-  function removeButton() {
+  function deleteCard() {
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
   }
 
   function selectItem() {
     $selectedItem = $cards.find((x) => x.id === id);
+    $expanded = false;
+    $resultCards = [];
   }
 </script>
 
@@ -79,7 +81,7 @@
   <div class="nameRow">
     <div class="surname"><strong>{surname}</strong></div>
     <div>{givenNames}</div>
-    <div class="xButton"><button on:click={removeButton}>✕</button></div>
+    <div class="xButton"><button on:click={deleteCard}>✕</button></div>
   </div>
   <div class="affilRow">
     <div class="fieldLabel"><em>affil.</em></div>
