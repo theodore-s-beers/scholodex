@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { cards, expanded, resultCards, selectedItem } from "./stores.svelte";
+  import { cards } from "./stores.svelte";
 
   export let affiliations: string;
   export let email: string;
@@ -16,12 +16,6 @@
   function deleteCard() {
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
   }
-
-  function selectItem() {
-    $selectedItem = $cards.find((x) => x.id === id);
-    $expanded = false;
-    $resultCards = [];
-  }
 </script>
 
 <style>
@@ -36,7 +30,7 @@
   }
   .card {
     width: 300px;
-    height: 150px;
+    height: 140px;
     border: 1px solid #aaa;
     border-radius: 0.25em;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
@@ -59,19 +53,30 @@
     flex-flow: row wrap;
     margin-bottom: 0.5em;
   }
-  .moreButton {
-    font-size: 45%;
-    margin: auto 0 0 auto;
-  }
   .nameRow {
     display: flex;
     font-size: 150%;
     margin-bottom: 0.5em;
   }
+  .nameRow a {
+    color: #333;
+  }
+  .nameRow a:hover {
+    text-decoration: none;
+  }
+  .names {
+    margin-top: -0.2em;
+  }
   .surname {
     margin-right: 0.5em;
   }
   .xButton {
+    height: 2em;
+    width: 2em;
+    padding: 0;
+    padding-top: 1px;
+  }
+  .xButtonWrapper {
     font-size: 45%;
     margin-left: auto;
   }
@@ -79,9 +84,12 @@
 
 <div class="card" in:fade>
   <div class="nameRow">
-    <div class="surname"><strong>{surname}</strong></div>
-    <div>{givenNames}</div>
-    <div class="xButton"><button on:click={deleteCard}>✕</button></div>
+    <div class="names">
+      <a href={'#' + id}><span class="surname"><strong>{surname}</strong></span>{givenNames}</a>
+    </div>
+    <div class="xButtonWrapper">
+      <button class="xButton" on:click={deleteCard}>✕</button>
+    </div>
   </div>
   <div class="affilRow">
     <div class="fieldLabel"><em>affil.</em></div>
@@ -95,5 +103,4 @@
     <div class="fieldLabel"><em>email</em></div>
     <div><a href="mailto:{email}">{email}</a></div>
   </div>
-  <div class="moreButton"><button on:click={selectItem}>→</button></div>
 </div>
