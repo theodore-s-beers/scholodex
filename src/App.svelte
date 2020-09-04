@@ -62,8 +62,6 @@
   function handleSearch(event: KeyboardEvent) {
     if (event.key === "Enter") {
       carryOutSearch();
-      // Trying to fix an issue in iOS
-      event.preventDefault();
     } else if (event.key === "Escape" || event.key === "Esc") {
       $expanded = false;
       $resultCards = [];
@@ -141,11 +139,26 @@
     margin-right: 1em;
   }
   .searchBar {
-    width: 334px;
+    width: 100%;
+    padding-right: 35px;
   }
   .searchBarWrapper {
     margin-top: -0.5em;
     margin-bottom: 1em;
+    width: 334px;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .searchButton {
+    margin-left: -30px;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  .searchButton:focus,
+  .searchButton:active {
+    border: none;
+    background: none;
   }
   .title {
     font-size: 200%;
@@ -154,7 +167,7 @@
     color: darkgreen;
   }
   @media (min-width: 768px) {
-    .searchBar {
+    .searchBarWrapper {
       width: 687px;
     }
   }
@@ -198,7 +211,9 @@
       class="searchBar"
       placeholder="Enter one search term (case-insensitive)"
       bind:value={searchTerm}
-      on:keydown={handleSearch} />
+      on:keydown={handleSearch} /><button
+      class="searchButton"
+      on:click={carryOutSearch}>🔍</button>
   </div>
 {/if}
 
