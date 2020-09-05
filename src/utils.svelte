@@ -70,7 +70,7 @@
   }
 
   export function searchCards(cards: ContactCard[], needle: string) {
-    let needleNormalized = needle.trim().toLowerCase();
+    const needleNormalized = needle.trim().toLowerCase();
     let results: number[] = [];
     for (let i = 0; i < cards.length; i++) {
       for (let key in cards[i]) {
