@@ -39,64 +39,84 @@
     margin-right: 3em;
   }
   .buttons {
+    font-size: 90%;
     display: flex;
     flex-flow: row nowrap;
-    font-size: 90%;
     justify-content: center;
     margin-top: auto;
   }
   .card {
     width: 300px;
-    min-height: 150px;
+    min-height: 140px;
     border: 1px solid #aaa;
     border-radius: 0.25em;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     padding: 1em;
     display: flex;
     flex-flow: column nowrap;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 16px;
   }
   .fieldLabel {
-    width: 4em;
+    width: 3.5em;
+    display: flex;
+    align-items: center;
+  }
+  .fieldLabel.multi {
+    align-items: stretch;
+  }
+  .fieldText {
     font-size: 90%;
   }
   .finalRow {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     margin-bottom: 1em;
   }
   .nameRow {
     display: flex;
-    font-size: x-large;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.7em;
+  }
+  .names {
+    font-size: 150%;
+    margin-top: -0.2em;
   }
   .normalRow {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     margin-bottom: 0.5em;
   }
   .surname {
-    margin-right: 0.5em;
+    margin-right: 0.4em;
   }
   .xButton {
-    font-size: 45%;
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 60%;
+  }
+  .xButtonWrapper {
     margin-left: auto;
   }
-  .xButton button {
-    width: 1.5rem;
-    height: 1.5rem;
+  @media (min-width: 768px) {
+    .card {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 </style>
 
 <div class="card" in:fade>
   <div class="nameRow">
-    <div class="surname"><strong>{surname}</strong></div>
-    <div>{givenNames}</div>
-    <div class="xButton"><button on:click={deleteCard}>✕</button></div>
+    <div class="names">
+      <span class="surname"><strong>{surname}</strong></span>{givenNames}
+    </div>
+    <div class="xButtonWrapper">
+      <button class="xButton" on:click={deleteCard}>✕</button>
+    </div>
   </div>
   <div class="normalRow">
-    <div class="fieldLabel"><em>affil.</em></div>
+    <div class="fieldLabel" class:multi={affilArray.length > 1}>
+      <em class="fieldText">affil.</em>
+    </div>
     <div>
       {#each affilArray as affiliation}
         <div>{affiliation}</div>
@@ -104,8 +124,8 @@
     </div>
   </div>
   <div class="normalRow">
-    <div class="fieldLabel">
-      <em>{fields.length > 1 ? 'fields' : 'field'}</em>
+    <div class="fieldLabel" class:multi={fieldsArray.length > 1}>
+      <em class="fieldText">{fieldsArray.length > 1 ? 'fields' : 'field'}</em>
     </div>
     <div>
       {#each fieldsArray as field}
@@ -114,7 +134,7 @@
     </div>
   </div>
   <div class="finalRow">
-    <div class="fieldLabel"><em>email</em></div>
+    <div class="fieldLabel"><em class="fieldText">email</em></div>
     <div><a href="mailto:{email}">{email}</a></div>
   </div>
   <div class="buttons">
