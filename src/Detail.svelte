@@ -14,7 +14,6 @@
   const fieldsArray = fields.toString().split(",");
 
   function backHome() {
-    $selectedItem = null;
     window.location.hash = "home";
   }
 

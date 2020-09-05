@@ -11,5 +11,7 @@
     email: "",
   });
   export const editing = writable(false);
+  export const expanded = writable(false);
+  export const resultCards = writable([]);
   export const selectedItem = writable(null);
 </script>
