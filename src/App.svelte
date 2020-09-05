@@ -35,7 +35,29 @@
   $: $cards.sort(complexCompare);
 
   //
-  // Searching
+  // Navigation
+  //
+
+  // Listen for hashchange when selecting a card
+  window.addEventListener("hashchange", updateView);
+
+  // Function to update view bashed on hash
+  function updateView() {
+    if (window.location.hash.length > 12) {
+      $selectedItem = $cards.find(
+        (x) => x.id === window.location.hash.substring(1)
+      );
+      expanded = false;
+    } else {
+      $selectedItem = null;
+    }
+  }
+
+  // Run this function on page load
+  updateView();
+
+  //
+  // Search
   //
 
   // Variable for toggling search field
@@ -95,21 +117,6 @@
     expanded = false;
   }
 
-  // Listen for hashchange when selecting a card
-  window.addEventListener("hashchange", updateView);
-
-  // Update view to expand selected card
-  function updateView() {
-    if (window.location.hash.length > 5) {
-      $selectedItem = $cards.find(
-        (x) => x.id === window.location.hash.substring(1)
-      );
-      if ($selectedItem) {
-        expanded = false;
-      }
-    }
-  }
-
   // Try to save cards to local storage, in a reactive manner
   $: try {
     localStorage.setItem("scholodex-cards", JSON.stringify($cards));
@@ -121,7 +128,7 @@
 <style>
   header {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: space-between;
     max-width: 334px;
     margin: 0.5em 0 1em 0;
@@ -129,8 +136,8 @@
   .cards {
     display: flex;
     flex-flow: row wrap;
-    margin-top: -1em;
-    margin-left: -1em;
+    margin-top: -16px;
+    margin-left: -16px;
   }
   .expandButton {
     width: 2.3em;

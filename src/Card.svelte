@@ -19,14 +19,10 @@
 </script>
 
 <style>
-  button {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
   .affilRow {
-    margin-bottom: 0.5em;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
+    margin-bottom: 0.5em;
   }
   .card {
     width: 300px;
@@ -37,26 +33,29 @@
     padding: 1em;
     display: flex;
     flex-flow: column nowrap;
-    margin-top: 1em;
-    margin-left: 1em;
+    margin-top: 16px;
+    margin-left: 16px;
   }
   .emailRow {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
   }
   .fieldLabel {
-    width: 4em;
+    width: 3.5em;
+    display: flex;
+    align-items: center;
+  }
+  .fieldText {
     font-size: 90%;
   }
   .fieldsRow {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     margin-bottom: 0.5em;
   }
   .nameRow {
     display: flex;
-    font-size: 150%;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.7em;
   }
   .nameRow a {
     color: #333;
@@ -65,19 +64,18 @@
     text-decoration: none;
   }
   .names {
+    font-size: 150%;
     margin-top: -0.2em;
   }
   .surname {
-    margin-right: 0.5em;
+    margin-right: 0.4em;
   }
   .xButton {
-    height: 2em;
-    width: 2em;
-    padding: 0;
-    padding-top: 1px;
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 60%;
   }
   .xButtonWrapper {
-    font-size: 45%;
     margin-left: auto;
   }
 </style>
@@ -92,15 +90,15 @@
     </div>
   </div>
   <div class="affilRow">
-    <div class="fieldLabel"><em>affil.</em></div>
+    <div class="fieldLabel"><em class="fieldText">affil.</em></div>
     <div>{primaryAffil}</div>
   </div>
   <div class="fieldsRow">
-    <div class="fieldLabel"><em>field</em></div>
+    <div class="fieldLabel"><em class="fieldText">field</em></div>
     <div>{primaryField}</div>
   </div>
   <div class="emailRow">
-    <div class="fieldLabel"><em>email</em></div>
+    <div class="fieldLabel"><em class="fieldText">email</em></div>
     <div><a href="mailto:{email}">{email}</a></div>
   </div>
 </div>
