@@ -78,12 +78,13 @@
   // Listen for hashchange (mainly to select a card)
   window.addEventListener("hashchange", updateView);
 
-  // Function to update view bashed on hash
+  // Function to update view based on hash
   function updateView() {
-    // Dismiss search field regardless
+    // Start by resetting default values
+    $selectedItem = null;
     expanded = false;
     // For any hash other than "home"
-    if (window.location.hash !== "#home") {
+    if (window.location.hash && window.location.hash !== "#home") {
       // Try to pull a card with matching ID
       const desiredItem = $cards.find(
         (x) => x.id === window.location.hash.substring(1)
@@ -94,11 +95,7 @@
       } else {
         // Else default to "home"
         window.location.hash = "home";
-        $selectedItem = null;
       }
-    } else {
-      // Null selected item if hash was "home"
-      $selectedItem = null;
     }
   }
 
