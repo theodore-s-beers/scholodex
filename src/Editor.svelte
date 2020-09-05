@@ -34,8 +34,8 @@
   }
 
   function deleteOld() {
-    let deprecated = $cards.find((x) => x.id === $current.id);
-    let deprecatedIndex = $cards.indexOf(deprecated);
+    const deprecated = $cards.find((x) => x.id === $current.id);
+    const deprecatedIndex = $cards.indexOf(deprecated);
     $cards = $cards
       .slice(0, deprecatedIndex)
       .concat($cards.slice(deprecatedIndex + 1));

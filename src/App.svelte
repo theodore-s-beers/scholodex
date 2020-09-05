@@ -23,8 +23,6 @@
   function loadSample() {
     if ($cards.length === 0) {
       $cards = sampleCards;
-    } else {
-      return;
     }
   }
 
@@ -33,28 +31,6 @@
 
   // Sort cards by name, in a reactive manner
   $: $cards.sort(complexCompare);
-
-  //
-  // Navigation
-  //
-
-  // Listen for hashchange when selecting a card
-  window.addEventListener("hashchange", updateView);
-
-  // Function to update view bashed on hash
-  function updateView() {
-    if (window.location.hash.length > 12) {
-      $selectedItem = $cards.find(
-        (x) => x.id === window.location.hash.substring(1)
-      );
-      expanded = false;
-    } else {
-      $selectedItem = null;
-    }
-  }
-
-  // Run this function on page load
-  updateView();
 
   //
   // Search
@@ -90,10 +66,44 @@
     resultCards = [];
     const results = searchCards($cards, searchTerm);
     for (let i = 0; i < results.length; i++) {
-      let desiredCard = $cards[results[i]];
+      const desiredCard = $cards[results[i]];
       resultCards.push(desiredCard);
     }
   }
+
+  //
+  // Navigation
+  //
+
+  // Listen for hashchange (mainly to select a card)
+  window.addEventListener("hashchange", updateView);
+
+  // Function to update view bashed on hash
+  function updateView() {
+    // Dismiss search field regardless
+    expanded = false;
+    // For any hash other than "home"
+    if (window.location.hash !== "#home") {
+      // Try to pull a card with matching ID
+      const desiredItem = $cards.find(
+        (x) => x.id === window.location.hash.substring(1)
+      );
+      // If that worked, select that card
+      if (desiredItem) {
+        $selectedItem = desiredItem;
+      } else {
+        // Else default to "home"
+        window.location.hash = "home";
+        $selectedItem = null;
+      }
+    } else {
+      // Null selected item if hash was "home"
+      $selectedItem = null;
+    }
+  }
+
+  // Run this function on page load
+  updateView();
 
   //
   // Other
