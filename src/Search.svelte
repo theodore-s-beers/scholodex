@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { fade } from "svelte/transition";
   import { cards, expanded, resultCards } from "./stores.svelte";
   import { searchCards } from "./utils.svelte";
@@ -31,7 +31,11 @@
     }
   }
 
+  // Focus on input field on mount
   onMount(() => searchField.focus());
+
+  // Clear results on destroy
+  onDestroy(() => ($resultCards = []));
 </script>
 
 <style>
