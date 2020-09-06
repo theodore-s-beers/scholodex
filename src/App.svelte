@@ -35,7 +35,7 @@
   }
 
   // Run this function on page load
-  loadSample();
+  // loadSample();
 
   // Sort cards by name, in a reactive manner
   $: $cards.sort(complexCompare);
