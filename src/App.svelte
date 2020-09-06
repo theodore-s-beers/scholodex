@@ -110,7 +110,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    max-width: 334px;
+    max-width: 336px;
     margin: 0.5em 0 1em 0;
   }
   .cards {
