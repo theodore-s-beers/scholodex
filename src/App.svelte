@@ -52,8 +52,15 @@
     // Start by resetting default values
     $expanded = false;
     $selectedItem = null;
-    // For any hash other than "home"
-    if (window.location.hash && window.location.hash !== "#home") {
+
+    // Return if no hash or "home"
+    if (!window.location.hash || window.location.hash === "#home") {
+      return;
+    } else if (window.location.hash === "#new") {
+      // Switch to editing mode for a new card
+      $editing = true;
+    } else {
+      // This suggests a UUID hash
       // Try to pull a card with matching ID
       const desiredItem = $cards.find(
         (x) => x.id === window.location.hash.substring(1)
@@ -62,7 +69,7 @@
       if (desiredItem) {
         $selectedItem = desiredItem;
       } else {
-        // Else default to "home"
+        // Else fall back to "home"
         window.location.hash = "home";
       }
     }
@@ -77,8 +84,7 @@
 
   // Function for creating new card
   // Set "current" card to all blank values
-  // Switch to editing mode
-  // Reset other state values
+  // Set hash "new"
   function newCard() {
     $current = {
       id: "",
@@ -88,9 +94,7 @@
       fields: "",
       email: "",
     };
-    $editing = true;
-    $expanded = false;
-    $selectedItem = null;
+    window.location.hash = "new";
   }
 
   // Try to save cards to local storage, in a reactive manner

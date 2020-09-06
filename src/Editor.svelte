@@ -22,15 +22,22 @@
   const newId = uuidv4();
 
   function backHome() {
-    $current = {
-      id: "",
-      surname: "",
-      givenNames: "",
-      affiliations: "",
-      fields: "",
-      email: "",
-    };
-    $editing = false;
+    // If this was for an edit
+    if ($current.id) {
+      $current = {
+        id: "",
+        surname: "",
+        givenNames: "",
+        affiliations: "",
+        fields: "",
+        email: "",
+      };
+      $editing = false;
+    } else {
+      // If this was for a new card
+      $editing = false;
+      window.location.hash = "home";
+    }
   }
 
   function deleteOld() {
