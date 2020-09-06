@@ -54,20 +54,24 @@
     } else {
       $cards = $cards.concat({
         id: newId,
-        surname: surname,
-        givenNames: givenNames,
+        surname: sanitize(surname),
+        givenNames: sanitize(givenNames),
         affiliations: affiliationTwo
-          ? affiliationOne + "," + affiliationTwo
-          : affiliationOne,
+          ? sanitize(affiliationOne) + "," + sanitize(affiliationTwo)
+          : sanitize(affiliationOne),
         fields:
           fieldTwo && fieldThree
-            ? fieldOne + "," + fieldTwo + "," + fieldThree
+            ? sanitize(fieldOne) +
+              "," +
+              sanitize(fieldTwo) +
+              "," +
+              sanitize(fieldThree)
             : fieldThree
-            ? fieldOne + "," + fieldThree
+            ? sanitize(fieldOne) + "," + sanitize(fieldThree)
             : fieldTwo
-            ? fieldOne + "," + fieldTwo
-            : fieldOne,
-        email: email,
+            ? sanitize(fieldOne) + "," + sanitize(fieldTwo)
+            : sanitize(fieldOne),
+        email: sanitize(email),
       });
       if ($current.id) {
         deleteOld();
@@ -86,6 +90,11 @@
     } else {
       return;
     }
+  }
+
+  function sanitize(input: string) {
+    const disallowed = /[",]/g;
+    return input.replace(disallowed, "").trim();
   }
 
   onMount(() => {
