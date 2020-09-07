@@ -144,12 +144,6 @@
   }
 </style>
 
-<svelte:head>
-  <meta
-    name="description"
-    content="A simple address book app, tailored to the needs of academics. Written in Svelte with TypeScript." />
-</svelte:head>
-
 <header>
   <div class="title"><a href="/">Scholodex</a></div>
   <div>
