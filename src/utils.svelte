@@ -7,6 +7,7 @@
     givenNames: string;
     affiliations: string;
     fields: string;
+    ideas: string;
     email: string;
   }
 
@@ -17,6 +18,7 @@
       givenNames: "John E.",
       affiliations: "University of Chicago",
       fields: "Iranian History,Central Asian History",
+      ideas: "Aqquyunlu,Confessional ambiguity",
       email: "j-woods@uchicago.edu",
     },
     {
@@ -25,6 +27,7 @@
       givenNames: "Beatrice",
       affiliations: "Freie Universität Berlin,Yale University",
       fields: "Arabic Literature",
+      ideas: "Development of Arabic script,Rise of the Arabic book",
       email: "beatrice.gruendler@fu-berlin.de",
     },
     {
@@ -33,6 +36,7 @@
       givenNames: "Michael A.",
       affiliations: "Princeton University",
       fields: "Islamicate History",
+      ideas: "Commanding right and forbidding wrong,Hagarism",
       email: "mcook@princeton.edu",
     },
     {
@@ -41,6 +45,7 @@
       givenNames: "Franklin D.",
       affiliations: "University of Chicago",
       fields: "Persian Literature,Islamic Studies",
+      ideas: "Mawlana Rumi,History of the ghazal",
       email: "flewis@uchicago.edu",
     },
     {
@@ -49,6 +54,7 @@
       givenNames: "Kevin",
       affiliations: "Brigham Young University,University of Chicago",
       fields: "Arabic Literature",
+      ideas: "al-Ma‘arri,Maghribi poetry",
       email: "kevin_blankinship@byu.edu",
     },
     {
@@ -57,6 +63,7 @@
       givenNames: "Theodore S.",
       affiliations: "Freie Universität Berlin,University of Chicago",
       fields: "Persian Literature,Iranian History",
+      ideas: "History of tazkirahs",
       email: "theo.beers@fu-berlin.de",
     },
   ];

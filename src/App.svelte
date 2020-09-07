@@ -92,6 +92,7 @@
       givenNames: "",
       affiliations: "",
       fields: "",
+      ideas: "",
       email: "",
     };
     window.location.hash = "new";
@@ -130,10 +131,10 @@
     font-size: 200%;
     line-height: 105%;
     margin-right: 0.2em;
-    color: darkgreen;
+    color: #28794c;
   }
   .title a {
-    color: darkgreen;
+    color: #28794c;
   }
   .title a:hover {
     text-decoration: none;
@@ -184,6 +185,7 @@
       givenNames={$current.givenNames}
       affiliations={$current.affiliations}
       fields={$current.fields}
+      ideas={$current.ideas}
       email={$current.email} />
   {:else if $selectedItem}
     <Detail
@@ -193,6 +195,7 @@
       givenNames={$selectedItem.givenNames}
       affiliations={$selectedItem.affiliations}
       fields={$selectedItem.fields}
+      ideas={$selectedItem.ideas}
       email={$selectedItem.email} />
   {:else if $cards.length > 0}
     <div class="cards" in:fade>
