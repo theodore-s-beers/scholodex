@@ -41,7 +41,7 @@
     flex-flow: row nowrap;
   }
   .fieldLabel {
-    width: 3.5em;
+    min-width: 3.5em;
     display: flex;
     align-items: center;
   }

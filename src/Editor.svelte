@@ -8,6 +8,7 @@
   export let email = "";
   export let fields: string;
   export let givenNames = "";
+  export let ideas: string;
   export let surname = "";
 
   let affiliationOne = affiliations.toString().split(",")[0];
@@ -15,7 +16,10 @@
 
   let fieldOne = fields.toString().split(",")[0];
   let fieldTwo = fields.toString().split(",")[1];
-  let fieldThree = fields.toString().split(",")[2];
+
+  let ideaOne = ideas.toString().split(",")[0];
+  let ideaTwo = ideas.toString().split(",")[1];
+  let ideaThree = ideas.toString().split(",")[2];
 
   let surnameField: HTMLInputElement;
 
@@ -30,6 +34,7 @@
         givenNames: "",
         affiliations: "",
         fields: "",
+        ideas: "",
         email: "",
       };
       $editing = false;
@@ -49,7 +54,14 @@
   }
 
   function generateCard() {
-    if (!surname || !givenNames || !affiliationOne || !fieldOne || !email) {
+    if (
+      !surname ||
+      !givenNames ||
+      !affiliationOne ||
+      !fieldOne ||
+      !ideaOne ||
+      !email
+    ) {
       alert("Please fill in all required fields, or cancel.");
     } else {
       $cards = $cards.concat({
@@ -59,18 +71,21 @@
         affiliations: affiliationTwo
           ? sanitize(affiliationOne) + "," + sanitize(affiliationTwo)
           : sanitize(affiliationOne),
-        fields:
-          fieldTwo && fieldThree
-            ? sanitize(fieldOne) +
+        fields: fieldTwo
+          ? sanitize(fieldOne) + "," + sanitize(fieldTwo)
+          : sanitize(fieldOne),
+        ideas:
+          ideaTwo && ideaThree
+            ? sanitize(ideaOne) +
               "," +
-              sanitize(fieldTwo) +
+              sanitize(ideaTwo) +
               "," +
-              sanitize(fieldThree)
-            : fieldThree
-            ? sanitize(fieldOne) + "," + sanitize(fieldThree)
-            : fieldTwo
-            ? sanitize(fieldOne) + "," + sanitize(fieldTwo)
-            : sanitize(fieldOne),
+              sanitize(ideaThree)
+            : ideaThree
+            ? sanitize(ideaOne) + "," + sanitize(ideaThree)
+            : ideaTwo
+            ? sanitize(ideaOne) + "," + sanitize(ideaTwo)
+            : sanitize(ideaOne),
         email: sanitize(email),
       });
       if ($current.id) {
@@ -162,7 +177,13 @@
     <input bind:value={fieldTwo} placeholder="Field 2 (optional)" />
   </div>
   <div class="singleRow">
-    <input bind:value={fieldThree} placeholder="Field 3 (optional)" />
+    <input bind:value={ideaOne} placeholder="Key idea 1" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={ideaTwo} placeholder="Key idea 2 (optional)" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={ideaThree} placeholder="Key idea 3 (optional)" />
   </div>
   <div class="singleRow"><input bind:value={email} placeholder="Email" /></div>
   <div class="buttonsRow">

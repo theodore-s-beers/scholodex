@@ -8,6 +8,7 @@
     givenNames: "",
     affiliations: "",
     fields: "",
+    ideas: "",
     email: "",
   });
   export const editing = writable(false);
