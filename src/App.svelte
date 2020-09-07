@@ -224,8 +224,30 @@
       {/if}
     </div>
   {:else}
-    <p class="welcome">
-      Welcome! To get started, add a new card, or load the sample set.
-    </p>
+    <div class="welcome">
+      <p>
+        Welcome! This is a prototype for a kind of <em>scholarly rolodex</em>,
+        developed using the <a href="https://svelte.dev/">Svelte</a> framework with
+        TypeScript.
+      </p>
+      <p>
+        Feel free to play around with this, but it isn’t fit for serious use.
+        There is no back end, and therefore no persistent data storage. Any
+        contact cards that you create will (ideally) be saved as <a
+          href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>
+        in your web browser.
+      </p>
+      <p>
+        Using the buttons above, you can add a new card, or load a sample set to
+        get an idea of how it works.
+      </p>
+      <p>
+        I’m developing this as a way of learning Svelte—the first modern
+        front-end framework or library that I’ve tried and actually enjoyed. The
+        source code is available <a
+          href="https://github.com/theodore-s-beers/scholodex">on GitHub</a> under
+        the MIT license.
+      </p>
+    </div>
   {/if}
 </main>
