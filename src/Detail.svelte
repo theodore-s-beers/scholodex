@@ -30,6 +30,7 @@
     $current.givenNames = givenNames;
     $current.affiliations = affiliations;
     $current.fields = fields;
+    $current.ideas = ideas;
     $current.email = email;
     $editing = true;
   }
