@@ -138,6 +138,9 @@
   .title a:hover {
     text-decoration: none;
   }
+  .welcome {
+    font-size: 110%;
+  }
 </style>
 
 <svelte:head>
@@ -148,13 +151,13 @@
 
 <header>
   <div class="title"><a href="/">Scholodex</a></div>
-  <div class="nonFinalButtonWrapper">
+  <div>
     <button
       class="nonFinalButton"
       disabled={$selectedItem || $editing}
       on:click={newCard}>New</button>
   </div>
-  <div class="nonFinalButtonWrapper">
+  <div>
     <button
       class="nonFinalButton"
       disabled={$cards.length > 0 || $editing}
@@ -191,7 +194,7 @@
       affiliations={$selectedItem.affiliations}
       fields={$selectedItem.fields}
       email={$selectedItem.email} />
-  {:else}
+  {:else if $cards.length > 0}
     <div class="cards" in:fade>
       {#if $resultCards.length > 0}
         {#each $resultCards as card, index (card.id)}
@@ -217,5 +220,9 @@
         {/each}
       {/if}
     </div>
+  {:else}
+    <p class="welcome">
+      Welcome! To get started, add a new card, or load the sample set.
+    </p>
   {/if}
 </main>
