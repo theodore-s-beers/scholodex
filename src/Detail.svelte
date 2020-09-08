@@ -55,19 +55,19 @@
   .card {
     width: 300px;
     min-height: 135px;
-    border: 1px solid rgba(0, 100, 60, 0.3);
+    border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
     padding: 1rem;
     display: flex;
     flex-flow: column nowrap;
     margin-top: 1rem;
-    background-color: white;
+    background-color: #fafafa;
   }
   .fieldContent {
     min-width: 66%;
   }
   .fieldContent hr {
-    border-top: 1px solid rgba(0, 100, 60, 0.3);
+    border-top: 1px solid rgba(16, 112, 64, 0.3);
     margin-top: 0.6rem;
     margin-bottom: 0.4rem;
   }

@@ -126,9 +126,9 @@
     justify-content: center;
   }
   .detail {
-    background-color: white;
+    background-color: #fafafa;
     width: 300px;
-    border: 1px solid rgba(0, 100, 60, 0.3);
+    border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
     padding: 1rem;
     margin: auto;

@@ -25,12 +25,12 @@
     margin-bottom: 0.5rem;
   }
   .card {
-    background-color: white;
+    background-color: #fafafa;
     display: flex;
     flex-flow: column nowrap;
     width: 300px;
     height: 135px;
-    border: 1px solid rgba(0, 100, 60, 0.3);
+    border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
     padding: 1rem;
     margin-top: 1rem;
@@ -58,7 +58,7 @@
     margin-bottom: 0.7rem;
   }
   .nameRow a {
-    color: #444;
+    color: #404040;
   }
   .nameRow a:hover {
     text-decoration: none;
