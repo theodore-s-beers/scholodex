@@ -40,10 +40,10 @@
   hr {
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-bottom: 0.6em;
+    margin-bottom: 0.7rem;
   }
   .backButton {
-    margin-right: 3em;
+    margin-right: 3rem;
   }
   .buttons {
     font-size: 90%;
@@ -54,26 +54,25 @@
   }
   .card {
     width: 300px;
-    min-height: 140px;
-    border: 1px solid #aaa;
-    border-radius: 0.25em;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 1em;
-    padding-bottom: 0.9em;
+    min-height: 135px;
+    border: 1px solid rgba(0, 100, 60, 0.3);
+    border-radius: 0.25rem;
+    padding: 1rem;
     display: flex;
     flex-flow: column nowrap;
-    margin-top: 16px;
+    margin-top: 1rem;
+    background-color: white;
   }
   .fieldContent {
     min-width: 66%;
   }
   .fieldContent hr {
-    border-top: 1px solid rgba(40, 121, 76, 0.3);
-    margin-top: 0.5em;
-    margin-bottom: 0.3em;
+    border-top: 1px solid rgba(0, 100, 60, 0.3);
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem;
   }
   .fieldLabel {
-    min-width: 3.5em;
+    min-width: 3.6rem;
     display: flex;
     align-items: center;
   }
@@ -82,7 +81,7 @@
   }
   .fieldLabel,
   .fieldContent {
-    line-height: 1.1;
+    line-height: 110%;
   }
   .fieldText {
     font-size: 90%;
@@ -90,23 +89,23 @@
   .finalRow {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 1.1em;
+    margin-bottom: 1rem;
   }
   .nameRow {
     display: flex;
-    margin-bottom: 1em;
+    margin-bottom: 1.2rem;
   }
   .names {
     font-size: 150%;
-    margin-top: -0.2em;
+    margin-top: -0.3rem;
   }
   .normalRow {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.3rem;
   }
   .surname {
-    margin-right: 0.4em;
+    margin-right: 0.7rem;
   }
   .xButton {
     height: 1.5rem;

@@ -59,6 +59,9 @@
     } else if (window.location.hash === "#new") {
       // Switch to editing mode for a new card
       $editing = true;
+    } else if (window.location.hash === "#sample") {
+      // Load the sample set
+      loadSample();
     } else {
       // This suggests a UUID hash
       // Try to pull a card with matching ID
@@ -108,140 +111,177 @@
 
 <style>
   header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    max-width: 336px;
-    margin: 0.5em 0 1em 0;
+    background-color: white;
+    border: 1px solid rgba(0, 100, 60, 0.3);
+    border-radius: 0.25rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: 1rem;
   }
   .cards {
     display: flex;
     flex-flow: row wrap;
-    margin-top: -16px;
-    margin-left: -16px;
+    margin-top: -1rem;
+    margin-left: -1rem;
   }
-  .expandButton {
-    width: 2.3em;
-    height: 2.3em;
+  .container {
+    max-width: 334px;
+    margin: auto;
+    padding: 1rem;
+    padding-bottom: 2rem;
   }
   .nonFinalButton {
-    height: 2.3em;
+    height: 2.5rem;
+    margin-right: 1rem;
+  }
+  .searchButton {
+    height: 2.5rem;
   }
   .title {
     font-size: 200%;
     line-height: 105%;
-    margin-right: 0.2em;
-    color: #28794c;
+    margin-right: 1.2rem;
+    margin-top: 1px;
+    color: #0a714e;
   }
   .title a {
-    color: #28794c;
+    color: #0a714e;
   }
   .title a:hover {
     text-decoration: none;
   }
+  .titleRow {
+    display: flex;
+    flex-flow: row nowrap;
+  }
   .welcome {
+    max-width: 684px;
     font-size: 110%;
+    background-color: white;
+    border: 1px solid rgba(0, 100, 60, 0.3);
+    border-radius: 0.25rem;
+    padding: 0 1rem 0 1rem;
+  }
+  .welcome p {
+    hyphens: auto;
+  }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 684px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1034px;
+    }
+    .welcome {
+      margin: auto;
+    }
+  }
+  @media (min-width: 1440px) {
+    .container {
+      max-width: 1384px;
+    }
   }
 </style>
 
-<header>
-  <div class="title"><a href="/">Scholodex</a></div>
-  <div>
-    <button
-      class="nonFinalButton"
-      disabled={$selectedItem || $editing}
-      on:click={newCard}>New</button>
-  </div>
-  <div>
-    <button
-      class="nonFinalButton"
-      disabled={$cards.length > 0 || $editing}
-      on:click={loadSample}>Sample</button>
-  </div>
-  <div>
-    <button
-      class="expandButton"
-      disabled={$selectedItem || $editing}
-      on:click={() => ($expanded = !$expanded)}>
-      {#if $expanded}<span in:fade>▼</span>{:else}<span in:fade>▷</span>{/if}
-    </button>
-  </div>
-</header>
-
-{#if $expanded}
-  <Search />
-{/if}
-
-<main>
-  {#if $editing}
-    <Editor
-      surname={$current.surname}
-      givenNames={$current.givenNames}
-      affiliations={$current.affiliations}
-      fields={$current.fields}
-      ideas={$current.ideas}
-      email={$current.email} />
-  {:else if $selectedItem}
-    <Detail
-      index={$cards.indexOf($selectedItem)}
-      id={$selectedItem.id}
-      surname={$selectedItem.surname}
-      givenNames={$selectedItem.givenNames}
-      affiliations={$selectedItem.affiliations}
-      fields={$selectedItem.fields}
-      ideas={$selectedItem.ideas}
-      email={$selectedItem.email} />
-  {:else if $cards.length > 0}
-    <div class="cards" in:fade>
-      {#if $resultCards.length > 0}
-        {#each $resultCards as card, index (card.id)}
-          <Card
-            {index}
-            id={card.id}
-            surname={card.surname}
-            givenNames={card.givenNames}
-            affiliations={card.affiliations}
-            fields={card.fields}
-            email={card.email} />
-        {/each}
-      {:else}
-        {#each $cards as card, index (card.id)}
-          <Card
-            {index}
-            id={card.id}
-            surname={card.surname}
-            givenNames={card.givenNames}
-            affiliations={card.affiliations}
-            fields={card.fields}
-            email={card.email} />
-        {/each}
-      {/if}
+<div class="container">
+  <header>
+    <div class="titleRow">
+      <div class="title"><a href="/">Scholodex</a></div>
+      <div>
+        <button
+          class="nonFinalButton"
+          disabled={$selectedItem || $editing}
+          on:click={newCard}>New</button>
+      </div>
+      <div>
+        <button
+          class="searchButton"
+          disabled={$selectedItem || $editing || $cards.length === 0}
+          on:click={() => ($expanded = !$expanded)}>
+          Search
+        </button>
+      </div>
     </div>
-  {:else}
-    <div class="welcome">
-      <p>
-        Welcome! This is a prototype for a kind of <em>scholarly rolodex</em>,
-        developed using the <a href="https://svelte.dev/">Svelte</a> framework with
-        TypeScript.
-      </p>
-      <p>
-        Feel free to play around with this, but it isn’t fit for serious use.
-        There is no back end, and therefore no persistent data storage. Any
-        contact cards that you create will (ideally) be saved as <a
-          href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>
-        in your web browser.
-      </p>
-      <p>
-        Using the buttons above, you can add a new card, or load a sample set to
-        get an idea of how it works.
-      </p>
-      <p>
-        I’m developing this as a way of learning Svelte—the first modern
-        front-end framework or library that I’ve tried and actually enjoyed. The
-        source code is available <a
-          href="https://github.com/theodore-s-beers/scholodex">on GitHub</a> under
-        the MIT license.
-      </p>
-    </div>
-  {/if}
-</main>
+
+    {#if $expanded}
+      <Search />
+    {/if}
+  </header>
+
+  <main>
+    {#if $editing}
+      <Editor
+        surname={$current.surname}
+        givenNames={$current.givenNames}
+        affiliations={$current.affiliations}
+        fields={$current.fields}
+        ideas={$current.ideas}
+        email={$current.email} />
+    {:else if $selectedItem}
+      <Detail
+        index={$cards.indexOf($selectedItem)}
+        id={$selectedItem.id}
+        surname={$selectedItem.surname}
+        givenNames={$selectedItem.givenNames}
+        affiliations={$selectedItem.affiliations}
+        fields={$selectedItem.fields}
+        ideas={$selectedItem.ideas}
+        email={$selectedItem.email} />
+    {:else if $cards.length > 0}
+      <div class="cards" in:fade>
+        {#if $resultCards.length > 0}
+          {#each $resultCards as card, index (card.id)}
+            <Card
+              {index}
+              id={card.id}
+              surname={card.surname}
+              givenNames={card.givenNames}
+              affiliations={card.affiliations}
+              fields={card.fields}
+              email={card.email} />
+          {/each}
+        {:else}
+          {#each $cards as card, index (card.id)}
+            <Card
+              {index}
+              id={card.id}
+              surname={card.surname}
+              givenNames={card.givenNames}
+              affiliations={card.affiliations}
+              fields={card.fields}
+              email={card.email} />
+          {/each}
+        {/if}
+      </div>
+    {:else}
+      <div class="welcome" in:fade>
+        <p>
+          Welcome! This is a prototype for a kind of <em>scholar’s rolodex</em>,
+          developed using the <a href="https://svelte.dev/">Svelte</a> framework
+          (to use the term loosely) with TypeScript.
+        </p>
+        <p>
+          Feel free to play around with this, but it isn’t yet fit for serious
+          use. There is no back end, and therefore no persistent data storage.
+          Any contact cards that you create will (ideally) be saved as <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>
+          in your web browser.
+        </p>
+        <p>
+          Using the buttons above, you can add new cards and search in their
+          contents. If you’d like to load a set of sample cards, to get a sense
+          of the interface, <a href="#sample">click here</a>.
+        </p>
+        <p>
+          I’m developing this as a way of learning Svelte—the first modern
+          front-end framework that I’ve tried and actually enjoyed. My source
+          code is available <a
+            href="https://github.com/theodore-s-beers/scholodex">on GitHub</a> under
+          the MIT license.
+        </p>
+      </div>
+    {/if}
+  </main>
+</div>

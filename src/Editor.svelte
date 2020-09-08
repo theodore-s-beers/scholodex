@@ -126,32 +126,32 @@
     justify-content: center;
   }
   .detail {
+    background-color: white;
     width: 300px;
-    border: 1px solid #aaa;
-    border-radius: 0.25em;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 1em;
+    border: 1px solid rgba(0, 100, 60, 0.3);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin: auto;
     display: flex;
     flex-flow: column nowrap;
-    margin: auto;
   }
   .doubleRow {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    margin-bottom: 0.5em;
+    margin-bottom: 1rem;
   }
   .doubleRow input {
-    width: 48%;
+    width: 47.5%;
   }
   .singleRow {
-    margin-bottom: 0.5em;
+    margin-bottom: 1rem;
   }
   .singleRow input {
     width: 100%;
   }
   .submitButton {
-    margin-right: 1em;
+    margin-right: 1rem;
   }
 </style>
 
