@@ -127,8 +127,7 @@
   .container {
     max-width: 334px;
     margin: auto;
-    padding: 1rem;
-    padding-bottom: 2rem;
+    padding: 1.5rem 1rem 2rem 1rem;
   }
   .nonFinalButton {
     height: 2.5rem;
