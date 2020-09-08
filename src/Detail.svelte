@@ -52,6 +52,9 @@
     justify-content: center;
     margin-top: auto;
   }
+  .buttons button {
+    padding: 0.4rem 0.5rem;
+  }
   .card {
     width: 300px;
     min-height: 135px;
@@ -60,7 +63,6 @@
     padding: 1rem;
     display: flex;
     flex-flow: column nowrap;
-    margin-top: 1rem;
     background-color: #fafafa;
   }
   .fieldContent {
@@ -93,7 +95,7 @@
   }
   .nameRow {
     display: flex;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.1rem;
   }
   .names {
     font-size: 150%;
@@ -117,8 +119,7 @@
   }
   @media (min-width: 768px) {
     .card {
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
     }
   }
 </style>

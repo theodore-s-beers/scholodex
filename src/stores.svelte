@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
   import { writable } from "svelte/store";
 
+  export const about = writable(false);
   export const cards = writable([]);
   export const current = writable({
     id: "",

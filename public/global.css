@@ -9,16 +9,12 @@ body {
 }
 
 a {
-  color: rgb(0, 100, 200);
+  color: #005ebd;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-}
-
-a:visited {
-  color: rgb(0, 80, 160);
 }
 
 label {
@@ -31,8 +27,7 @@ select,
 textarea {
   font-family: inherit;
   font-size: inherit;
-  -webkit-padding: 0.4em 0;
-  padding: 0.4em;
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
   border: 1px solid #ccc;
