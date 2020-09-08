@@ -22,26 +22,26 @@
   .affilRow {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
   }
   .card {
-    width: 300px;
-    height: 140px;
-    border: 1px solid #aaa;
-    border-radius: 0.25em;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 1em;
+    background-color: white;
     display: flex;
     flex-flow: column nowrap;
-    margin-top: 16px;
-    margin-left: 16px;
+    width: 300px;
+    height: 135px;
+    border: 1px solid rgba(0, 100, 60, 0.3);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
   }
   .emailRow {
     display: flex;
     flex-flow: row nowrap;
   }
   .fieldLabel {
-    min-width: 3.5em;
+    min-width: 3.6rem;
     display: flex;
     align-items: center;
   }
@@ -51,24 +51,24 @@
   .fieldsRow {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
   }
   .nameRow {
     display: flex;
-    margin-bottom: 0.7em;
+    margin-bottom: 0.7rem;
   }
   .nameRow a {
-    color: #333;
+    color: #444;
   }
   .nameRow a:hover {
     text-decoration: none;
   }
   .names {
     font-size: 150%;
-    margin-top: -0.2em;
+    margin-top: -0.3rem;
   }
   .surname {
-    margin-right: 0.4em;
+    margin-right: 0.7rem;
   }
   .xButton {
     height: 1.5rem;

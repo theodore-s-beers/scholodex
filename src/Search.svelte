@@ -42,18 +42,19 @@
   .searchBar {
     width: 100%;
     padding-right: 35px;
+    border-radius: 0.25rem;
   }
   .searchBarWrapper {
-    margin-top: -0.5em;
-    margin-bottom: 1em;
-    width: 336px;
+    margin: 0;
+    margin-top: 1rem;
     display: flex;
     flex-flow: row nowrap;
+    max-width: 480px;
   }
   .searchButton {
     margin-left: -30px;
     padding: 0;
-    padding-top: 3px;
+    padding-top: 2px;
     border: none;
     background: none;
     transform: rotate(-45deg);
@@ -63,11 +64,6 @@
   .searchButton:active {
     border: none;
     background: none;
-  }
-  @media (min-width: 768px) {
-    .searchBarWrapper {
-      width: 689px;
-    }
   }
 </style>
 
