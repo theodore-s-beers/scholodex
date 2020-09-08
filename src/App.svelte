@@ -111,8 +111,8 @@
 
 <style>
   header {
-    background-color: white;
-    border: 1px solid rgba(0, 100, 60, 0.3);
+    background-color: #fafafa;
+    border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
     margin: 0;
     margin-bottom: 1rem;
@@ -140,10 +140,10 @@
     font-size: 200%;
     line-height: 105%;
     margin-right: 1.2rem;
-    color: #0a714e;
+    color: #107040;
   }
   .title a {
-    color: #0a714e;
+    color: #107040;
   }
   .title a:hover {
     text-decoration: none;
@@ -155,8 +155,8 @@
   .welcome {
     max-width: 684px;
     font-size: 110%;
-    background-color: white;
-    border: 1px solid rgba(0, 100, 60, 0.3);
+    background-color: #fafafa;
+    border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
     padding: 0 1rem 0 1rem;
   }
