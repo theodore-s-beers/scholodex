@@ -120,6 +120,10 @@
 </script>
 
 <style>
+  button,
+  input {
+    padding: 0.5rem;
+  }
   .buttonsRow {
     display: flex;
     flex-flow: row nowrap;

@@ -41,6 +41,7 @@
 <style>
   .searchBar {
     width: 100%;
+    padding: 0.5rem;
     padding-right: 35px;
     border-radius: 0.25rem;
   }
