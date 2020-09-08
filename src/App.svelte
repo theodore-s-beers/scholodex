@@ -141,7 +141,6 @@
     font-size: 200%;
     line-height: 105%;
     margin-right: 1.2rem;
-    margin-top: 1px;
     color: #0a714e;
   }
   .title a {
@@ -278,8 +277,7 @@
           I’m developing this as a way of learning Svelte—the first modern
           front-end framework that I’ve tried and actually enjoyed. My source
           code is available <a
-            href="https://github.com/theodore-s-beers/scholodex">on GitHub</a> under
-          the MIT license.
+            href="https://github.com/theodore-s-beers/scholodex">on GitHub</a>.
         </p>
       </div>
     {/if}
