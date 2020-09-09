@@ -217,19 +217,19 @@
       <div>
         <button
           class="newButton"
-          disabled={$selectedItem || $editing}
+          disabled={$editing || $selectedItem}
           on:click={newCard}>+</button>
       </div>
       <div>
         <button
           class="searchButton"
-          disabled={$selectedItem || $editing || $cards.length === 0}
+          disabled={$about || $editing || $selectedItem}
           on:click={() => ($expanded = !$expanded)}>?</button>
       </div>
       <div>
         <button
           class="infoButton"
-          disabled={$selectedItem || $editing || $cards.length === 0}
+          disabled={$cards.length === 0 || $editing || $selectedItem}
           on:click={toggleAbout}>…</button>
       </div>
     </div>
