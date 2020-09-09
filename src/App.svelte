@@ -15,6 +15,7 @@
   import Detail from "./Detail.svelte";
   import Editor from "./Editor.svelte";
   import Search from "./Search.svelte";
+  import Welcome from "./Welcome.svelte";
 
   //
   // Basic display of cards
@@ -55,22 +56,25 @@
     $expanded = false;
     $selectedItem = null;
 
-    // Return if no hash or "home"
-    if (!window.location.hash || window.location.hash === "#home") {
-      // But check for a lack of cards
+    // If no hash, set to "home"
+    if (!window.location.hash) {
+      window.location.hash = "home";
+    } else if (window.location.hash === "#about") {
+      // If "#about" show project description
+      $about = true;
+    } else if (window.location.hash === "#home") {
+      // If "#home" check for absence of cards
       if ($cards.length === 0) {
         window.location.hash = "about";
       } else {
+        // Otherwise return
         return;
       }
     } else if (window.location.hash === "#new") {
-      // Switch to editing mode for a new card
+      // If "#new" switch to editing mode
       $editing = true;
-    } else if (window.location.hash === "#about") {
-      // Show project description
-      $about = true;
     } else if (window.location.hash === "#sample") {
-      // Load sample set
+      // If "#sample" run the appropriate function
       loadSample();
     } else {
       // This suggests a UUID hash
@@ -82,7 +86,7 @@
       if (desiredItem) {
         $selectedItem = desiredItem;
       } else {
-        // Else fall back to "home"
+        // Otherwise fall back to "home"
         window.location.hash = "home";
       }
     }
@@ -93,14 +97,14 @@
 
   // Function to open and close project description
   function toggleAbout() {
-    if ($about) {
-      window.location.hash = "home";
-    } else {
+    if (!$about) {
       window.location.hash = "about";
+    } else {
+      window.location.hash = "home";
     }
   }
 
-  // Keep "listening" for a lack of cards
+  // Keep "listening" for absence of cards
   $: if ($cards.length === 0) {
     window.location.hash = "about";
   }
@@ -167,9 +171,6 @@
     padding-bottom: 4px;
     font-size: 130%;
   }
-  .sampleLink {
-    color: #b8392e;
-  }
   .searchButton {
     font-size: 115%;
   }
@@ -189,17 +190,6 @@
     display: flex;
     flex-flow: row nowrap;
   }
-  .welcome {
-    max-width: 684px;
-    font-size: 110%;
-    background-color: #fafafa;
-    border: 1px solid rgba(16, 112, 64, 0.4);
-    border-radius: 0.25rem;
-    padding: 0 1rem 0 1rem;
-  }
-  .welcome p {
-    hyphens: auto;
-  }
   @media (min-width: 768px) {
     .container {
       max-width: 684px;
@@ -211,9 +201,6 @@
   @media (min-width: 1280px) {
     .container {
       max-width: 1034px;
-    }
-    .welcome {
-      margin: auto;
     }
   }
   @media (min-width: 1440px) {
@@ -252,79 +239,51 @@
     {/if}
   </header>
 
-  <main>
-    {#if $editing}
-      <Editor
-        surname={$current.surname}
-        givenNames={$current.givenNames}
-        affiliations={$current.affiliations}
-        fields={$current.fields}
-        ideas={$current.ideas}
-        email={$current.email} />
-    {:else if $selectedItem}
-      <Detail
-        index={$cards.indexOf($selectedItem)}
-        id={$selectedItem.id}
-        surname={$selectedItem.surname}
-        givenNames={$selectedItem.givenNames}
-        affiliations={$selectedItem.affiliations}
-        fields={$selectedItem.fields}
-        ideas={$selectedItem.ideas}
-        email={$selectedItem.email} />
-    {:else if $about}
-      <div class="welcome" in:fade>
-        <p>
-          Welcome! This is a prototype for a kind of <em>scholar’s rolodex</em>,
-          developed using the <a href="https://svelte.dev/">Svelte</a> framework
-          (to use the term loosely) with TypeScript.
-        </p>
-        <p>
-          Feel free to play around with this, but it isn’t yet fit for serious
-          use. There is no back end, and therefore no persistent data storage.
-          Any contact cards that you create will (ideally) be saved as <a
-            href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>
-          in your web browser.
-        </p>
-        <p>
-          Using the buttons above, you can add new cards, search in their
-          contents, or summon this description again (once there’s something
-          else to display). If you’d like to load a set of sample cards, to get
-          a sense of the interface, <a href="#sample" class="sampleLink">click
-            here</a>.
-        </p>
-        <p>
-          I’m developing this as a way of learning Svelte—the first modern
-          front-end framework that I’ve tried and actually enjoyed. My source
-          code is available <a
-            href="https://github.com/theodore-s-beers/scholodex">on GitHub</a>.
-        </p>
-      </div>
-    {:else}
-      <div class="cards" in:fade>
-        {#if $resultCards.length > 0}
-          {#each $resultCards as card, index (card.id)}
-            <Card
-              {index}
-              id={card.id}
-              surname={card.surname}
-              givenNames={card.givenNames}
-              affiliations={card.affiliations}
-              fields={card.fields}
-              email={card.email} />
-          {/each}
-        {:else}
-          {#each $cards as card, index (card.id)}
-            <Card
-              {index}
-              id={card.id}
-              surname={card.surname}
-              givenNames={card.givenNames}
-              affiliations={card.affiliations}
-              fields={card.fields}
-              email={card.email} />
-          {/each}
-        {/if}
-      </div>
-    {/if}
-  </main>
+  {#if $about}
+    <Welcome />
+  {:else if $editing}
+    <Editor
+      surname={$current.surname}
+      givenNames={$current.givenNames}
+      affiliations={$current.affiliations}
+      fields={$current.fields}
+      ideas={$current.ideas}
+      email={$current.email} />
+  {:else if $selectedItem}
+    <Detail
+      index={$cards.indexOf($selectedItem)}
+      id={$selectedItem.id}
+      surname={$selectedItem.surname}
+      givenNames={$selectedItem.givenNames}
+      affiliations={$selectedItem.affiliations}
+      fields={$selectedItem.fields}
+      ideas={$selectedItem.ideas}
+      email={$selectedItem.email} />
+  {:else}
+    <div class="cards" in:fade>
+      {#if $resultCards.length > 0}
+        {#each $resultCards as card, index (card.id)}
+          <Card
+            {index}
+            id={card.id}
+            surname={card.surname}
+            givenNames={card.givenNames}
+            affiliations={card.affiliations}
+            fields={card.fields}
+            email={card.email} />
+        {/each}
+      {:else}
+        {#each $cards as card, index (card.id)}
+          <Card
+            {index}
+            id={card.id}
+            surname={card.surname}
+            givenNames={card.givenNames}
+            affiliations={card.affiliations}
+            fields={card.fields}
+            email={card.email} />
+        {/each}
+      {/if}
+    </div>
+  {/if}
 </div>

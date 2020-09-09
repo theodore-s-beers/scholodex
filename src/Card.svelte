@@ -19,11 +19,6 @@
 </script>
 
 <style>
-  .affilRow {
-    display: flex;
-    flex-flow: row nowrap;
-    margin-bottom: 0.5rem;
-  }
   .card {
     background-color: #fafafa;
     display: flex;
@@ -48,11 +43,6 @@
   .fieldText {
     font-size: 90%;
   }
-  .fieldsRow {
-    display: flex;
-    flex-flow: row nowrap;
-    margin-bottom: 0.5rem;
-  }
   .nameRow {
     display: flex;
     margin-bottom: 0.7rem;
@@ -66,6 +56,11 @@
   .names {
     font-size: 150%;
     margin-top: -0.3rem;
+  }
+  .normalRow {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 0.5rem;
   }
   .surname {
     margin-right: 0.7rem;
@@ -89,11 +84,11 @@
       <button class="xButton" on:click={deleteCard}>✕</button>
     </div>
   </div>
-  <div class="affilRow">
+  <div class="normalRow">
     <div class="fieldLabel"><em class="fieldText">affil.</em></div>
     <div>{primaryAffil}</div>
   </div>
-  <div class="fieldsRow">
+  <div class="normalRow">
     <div class="fieldLabel"><em class="fieldText">field</em></div>
     <div>{primaryField}</div>
   </div>
