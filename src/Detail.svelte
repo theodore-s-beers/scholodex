@@ -65,13 +65,10 @@
     flex-flow: column nowrap;
     background-color: #fafafa;
   }
-  .fieldContent {
-    min-width: 66%;
-  }
   .fieldContent hr {
     border-top: 1px solid rgba(16, 112, 64, 0.3);
-    margin-top: 0.6rem;
-    margin-bottom: 0.4rem;
+    margin: 0.6rem 0 0.4rem;
+    width: 180px;
   }
   .fieldLabel {
     min-width: 3.6rem;
