@@ -8,7 +8,7 @@
   }
   .welcome {
     max-width: 684px;
-    font-size: 110%;
+    font-size: 105%;
     background-color: #fafafa;
     border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
@@ -16,6 +16,7 @@
   }
   .welcome p {
     hyphens: auto;
+    line-height: 140%;
   }
   @media (min-width: 1280px) {
     .welcome {

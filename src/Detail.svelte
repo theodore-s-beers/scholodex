@@ -57,7 +57,7 @@
   }
   .card {
     width: 300px;
-    min-height: 135px;
+    min-height: 132px;
     border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
     padding: 1rem;
@@ -65,9 +65,12 @@
     flex-flow: column nowrap;
     background-color: #fafafa;
   }
+  .fieldContent {
+    hyphens: auto;
+  }
   .fieldContent hr {
     border-top: 1px solid rgba(16, 112, 64, 0.3);
-    margin: 0.6rem 0 0.4rem;
+    margin: 0.5rem 0 0.5rem;
     width: 180px;
   }
   .fieldLabel {
@@ -80,7 +83,7 @@
   }
   .fieldLabel,
   .fieldContent {
-    line-height: 110%;
+    line-height: 125%;
   }
   .fieldText {
     font-size: 90%;
@@ -88,15 +91,14 @@
   .finalRow {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
   }
   .nameRow {
     display: flex;
     margin-bottom: 1.1rem;
   }
   .names {
-    font-size: 150%;
-    margin-top: -0.3rem;
+    font-size: 145%;
   }
   .normalRow {
     display: flex;
@@ -109,7 +111,8 @@
   .xButton {
     height: 1.5rem;
     width: 1.5rem;
-    font-size: 60%;
+    font-size: 65%;
+    padding-top: 1px;
   }
   .xButtonWrapper {
     margin-left: auto;

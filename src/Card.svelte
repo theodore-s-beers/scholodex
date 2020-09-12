@@ -24,7 +24,7 @@
     display: flex;
     flex-flow: column nowrap;
     width: 300px;
-    height: 135px;
+    height: 132px;
     border: 1px solid rgba(16, 112, 64, 0.4);
     border-radius: 0.25rem;
     padding: 1rem;
@@ -45,7 +45,7 @@
   }
   .nameRow {
     display: flex;
-    margin-bottom: 0.7rem;
+    margin-bottom: 1rem;
   }
   .nameRow a {
     color: #404040;
@@ -54,13 +54,12 @@
     text-decoration: none;
   }
   .names {
-    font-size: 150%;
-    margin-top: -0.3rem;
+    font-size: 145%;
   }
   .normalRow {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
   }
   .surname {
     margin-right: 0.7rem;
@@ -68,7 +67,8 @@
   .xButton {
     height: 1.5rem;
     width: 1.5rem;
-    font-size: 60%;
+    font-size: 65%;
+    padding-top: 1px;
   }
   .xButtonWrapper {
     margin-left: auto;
