@@ -139,8 +139,8 @@
 
 <style>
   button {
-    height: 2.4rem;
-    width: 2.4rem;
+    height: 2.3rem;
+    width: 2.3rem;
     margin-right: 1rem;
   }
   header {
@@ -163,20 +163,21 @@
     padding: 1.5rem 1rem 2rem 1rem;
   }
   .infoButton {
-    padding-bottom: 1rem;
+    padding-bottom: 8px;
     font-size: 120%;
     margin-right: 0;
   }
   .newButton {
-    padding-bottom: 4px;
+    padding-bottom: 2px;
     font-size: 130%;
   }
   .searchButton {
-    font-size: 115%;
+    font-size: 110%;
+    padding-top: 1px;
   }
   .title {
     font-size: 200%;
-    line-height: 105%;
+    line-height: 115%;
     margin-right: auto;
     color: #0c6e3d;
   }
@@ -195,7 +196,7 @@
       max-width: 684px;
     }
     .title {
-      margin-right: 1.5rem;
+      margin-right: 1.25rem;
     }
   }
   @media (min-width: 1280px) {
@@ -213,7 +214,7 @@
 <div class="container">
   <header>
     <div class="titleRow">
-      <div class="title"><a href="/"><em>Scholodex</em></a></div>
+      <div class="title"><a href="/">Scholodex</a></div>
       <div>
         <button
           class="newButton"

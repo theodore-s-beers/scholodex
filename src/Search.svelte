@@ -42,7 +42,7 @@
   .searchBar {
     width: 100%;
     padding: 0.5rem;
-    padding-right: 35px;
+    padding-right: 32px;
     border-radius: 0.25rem;
   }
   .searchBarWrapper {
@@ -53,9 +53,9 @@
     max-width: 480px;
   }
   .searchButton {
-    margin-left: -30px;
+    margin-left: -26px;
     padding: 0;
-    padding-top: 2px;
+    padding-top: 1px;
     border: none;
     background: none;
     transform: rotate(-45deg);
