@@ -74,7 +74,12 @@
     placeholder="Enter one search term (case-insensitive)"
     bind:this={searchField}
     bind:value={searchTerm}
-    on:keydown={handleSearch} /><button
+    on:keydown={handleSearch}
+    type="text"
+    autocapitalize="none"
+    spellcheck={false}
+    autocomplete="off"
+    autocorrect="off" /><button
     class="searchButton"
     on:click={carryOutSearch}>⚲</button>
 </div>
