@@ -1,6 +1,8 @@
 {
   "name": "scholodex",
   "version": "0.1.0",
+  "repository": "github:theodore-s-beers/scholodex",
+  "license": "MIT",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -10,6 +12,11 @@
     "standardize-ts": "find . -name '*.ts' ! -path './node_modules/*' ! -path './public/build/*' -exec ts-standard --fix {} ';'",
     "start": "sirv public",
     "validate": "svelte-check"
+  },
+  "dependencies": {
+    "@types/uuid": "^8.3.0",
+    "sirv-cli": "^1.0.8",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^16.0.0",
@@ -28,10 +35,5 @@
     "ts-standard": "^9.0.0",
     "tslib": "^2.0.3",
     "typescript": "^4.0.5"
-  },
-  "dependencies": {
-    "@types/uuid": "^8.3.0",
-    "sirv-cli": "^1.0.8",
-    "uuid": "^8.3.1"
   }
 }
