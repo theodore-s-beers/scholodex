@@ -78,7 +78,8 @@
 <div class="card" in:fade>
   <div class="nameRow">
     <div class="names">
-      <a href={'#' + id}><span class="surname"><strong>{surname}</strong></span>{givenNames}</a>
+      <a href={'#' + id}><span
+          class="surname"><strong>{surname}</strong></span>{givenNames}</a>
     </div>
     <div class="xButtonWrapper">
       <button class="xButton" on:click={deleteCard}>✕</button>

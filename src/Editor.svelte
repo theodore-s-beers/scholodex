@@ -191,6 +191,7 @@
   </div>
   <div class="singleRow"><input bind:value={email} placeholder="Email" /></div>
   <div class="buttonsRow">
-    <button class="submitButton" on:click={generateCard}>Submit</button><button on:click={backHome}>Cancel</button>
+    <button class="submitButton" on:click={generateCard}>Submit</button><button
+      on:click={backHome}>Cancel</button>
   </div>
 </div>
