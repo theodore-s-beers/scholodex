@@ -1,6 +1,7 @@
 {
   "name": "scholodex",
   "version": "0.1.0",
+  "description": "A prototype for a scholar's rolodex",
   "repository": "github:theodore-s-beers/scholodex",
   "license": "MIT",
   "scripts": {
