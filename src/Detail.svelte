@@ -36,6 +36,79 @@
   }
 </script>
 
+<div class="card" in:fade>
+  <div class="nameRow">
+    <div class="names">
+      <span class="surname"><strong>{surname}</strong></span>{givenNames}
+    </div>
+    <div class="xButtonWrapper">
+      <button class="xButton" on:click={deleteCard}>✕</button>
+    </div>
+  </div>
+  <div class="normalRow">
+    <div class="fieldLabel" class:multi={affilArray.length > 1}>
+      <em class="fieldText">affil.</em>
+    </div>
+    <div class="fieldContent">
+      {#each affilArray as affiliation, index}
+        {#if index !== affilArray.length - 1}
+          <div>{affiliation}</div>
+          <hr />
+        {:else}
+          <div>{affiliation}</div>
+        {/if}
+      {/each}
+    </div>
+  </div>
+  <div>
+    <hr />
+  </div>
+  <div class="normalRow">
+    <div class="fieldLabel" class:multi={fieldsArray.length > 1}>
+      <em class="fieldText">{fieldsArray.length > 1 ? "fields" : "field"}</em>
+    </div>
+    <div class="fieldContent">
+      {#each fieldsArray as field, index}
+        {#if index !== fieldsArray.length - 1}
+          <div>{field}</div>
+          <hr />
+        {:else}
+          <div>{field}</div>
+        {/if}
+      {/each}
+    </div>
+  </div>
+  <div>
+    <hr />
+  </div>
+  <div class="normalRow">
+    <div class="fieldLabel" class:multi={ideasArray.length > 1}>
+      <em class="fieldText">{ideasArray.length > 1 ? "ideas" : "idea"}</em>
+    </div>
+    <div class="fieldContent">
+      {#each ideasArray as idea, index}
+        {#if index !== ideasArray.length - 1}
+          <div>{idea}</div>
+          <hr />
+        {:else}
+          <div>{idea}</div>
+        {/if}
+      {/each}
+    </div>
+  </div>
+  <div>
+    <hr />
+  </div>
+  <div class="finalRow">
+    <div class="fieldLabel"><em class="fieldText">email</em></div>
+    <div class="fieldContent"><a href="mailto:{email}">{email}</a></div>
+  </div>
+  <div class="buttons">
+    <div><button class="backButton" on:click={backHome}>Back</button></div>
+    <div><button on:click={fillGaps}>Edit</button></div>
+  </div>
+</div>
+
 <style>
   hr {
     border: 0;
@@ -123,76 +196,3 @@
     }
   }
 </style>
-
-<div class="card" in:fade>
-  <div class="nameRow">
-    <div class="names">
-      <span class="surname"><strong>{surname}</strong></span>{givenNames}
-    </div>
-    <div class="xButtonWrapper">
-      <button class="xButton" on:click={deleteCard}>✕</button>
-    </div>
-  </div>
-  <div class="normalRow">
-    <div class="fieldLabel" class:multi={affilArray.length > 1}>
-      <em class="fieldText">affil.</em>
-    </div>
-    <div class="fieldContent">
-      {#each affilArray as affiliation, index}
-        {#if index !== affilArray.length - 1}
-          <div>{affiliation}</div>
-          <hr />
-        {:else}
-          <div>{affiliation}</div>
-        {/if}
-      {/each}
-    </div>
-  </div>
-  <div>
-    <hr />
-  </div>
-  <div class="normalRow">
-    <div class="fieldLabel" class:multi={fieldsArray.length > 1}>
-      <em class="fieldText">{fieldsArray.length > 1 ? 'fields' : 'field'}</em>
-    </div>
-    <div class="fieldContent">
-      {#each fieldsArray as field, index}
-        {#if index !== fieldsArray.length - 1}
-          <div>{field}</div>
-          <hr />
-        {:else}
-          <div>{field}</div>
-        {/if}
-      {/each}
-    </div>
-  </div>
-  <div>
-    <hr />
-  </div>
-  <div class="normalRow">
-    <div class="fieldLabel" class:multi={ideasArray.length > 1}>
-      <em class="fieldText">{ideasArray.length > 1 ? 'ideas' : 'idea'}</em>
-    </div>
-    <div class="fieldContent">
-      {#each ideasArray as idea, index}
-        {#if index !== ideasArray.length - 1}
-          <div>{idea}</div>
-          <hr />
-        {:else}
-          <div>{idea}</div>
-        {/if}
-      {/each}
-    </div>
-  </div>
-  <div>
-    <hr />
-  </div>
-  <div class="finalRow">
-    <div class="fieldLabel"><em class="fieldText">email</em></div>
-    <div class="fieldContent"><a href="mailto:{email}">{email}</a></div>
-  </div>
-  <div class="buttons">
-    <div><button class="backButton" on:click={backHome}>Back</button></div>
-    <div><button on:click={fillGaps}>Edit</button></div>
-  </div>
-</div>
