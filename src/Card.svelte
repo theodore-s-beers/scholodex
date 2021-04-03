@@ -18,6 +18,31 @@
   }
 </script>
 
+<div class="card" in:fade>
+  <div class="nameRow">
+    <div class="names">
+      <a href={"#" + id}
+        ><span class="surname"><strong>{surname}</strong></span>{givenNames}</a
+      >
+    </div>
+    <div class="xButtonWrapper">
+      <button class="xButton" on:click={deleteCard}>✕</button>
+    </div>
+  </div>
+  <div class="normalRow">
+    <div class="fieldLabel"><em class="fieldText">affil.</em></div>
+    <div>{primaryAffil}</div>
+  </div>
+  <div class="normalRow">
+    <div class="fieldLabel"><em class="fieldText">field</em></div>
+    <div>{primaryField}</div>
+  </div>
+  <div class="emailRow">
+    <div class="fieldLabel"><em class="fieldText">email</em></div>
+    <div><a href="mailto:{email}">{email}</a></div>
+  </div>
+</div>
+
 <style>
   .card {
     background-color: #fafafa;
@@ -74,27 +99,3 @@
     margin-left: auto;
   }
 </style>
-
-<div class="card" in:fade>
-  <div class="nameRow">
-    <div class="names">
-      <a href={'#' + id}><span
-          class="surname"><strong>{surname}</strong></span>{givenNames}</a>
-    </div>
-    <div class="xButtonWrapper">
-      <button class="xButton" on:click={deleteCard}>✕</button>
-    </div>
-  </div>
-  <div class="normalRow">
-    <div class="fieldLabel"><em class="fieldText">affil.</em></div>
-    <div>{primaryAffil}</div>
-  </div>
-  <div class="normalRow">
-    <div class="fieldLabel"><em class="fieldText">field</em></div>
-    <div>{primaryField}</div>
-  </div>
-  <div class="emailRow">
-    <div class="fieldLabel"><em class="fieldText">email</em></div>
-    <div><a href="mailto:{email}">{email}</a></div>
-  </div>
-</div>

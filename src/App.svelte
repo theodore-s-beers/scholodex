@@ -11,11 +11,11 @@
   } from "./stores.svelte";
   import { complexCompare, sampleCards } from "./utils.svelte";
 
-  import Card from "./Card.svelte";
-  import Detail from "./Detail.svelte";
-  import Editor from "./Editor.svelte";
-  import Search from "./Search.svelte";
-  import Welcome from "./Welcome.svelte";
+  import Card from "Card.svelte";
+  import Detail from "Detail.svelte";
+  import Editor from "Editor.svelte";
+  import Search from "Search.svelte";
+  import Welcome from "Welcome.svelte";
 
   //
   // Basic display of cards
@@ -137,6 +137,91 @@
   }
 </script>
 
+<div class="container">
+  <header>
+    <div class="titleRow">
+      <div class="title"><a href="/">Scholodex</a></div>
+      <div>
+        <button
+          class="newButton"
+          disabled={$editing || $selectedItem}
+          on:click={newCard}>+</button
+        >
+      </div>
+      <div>
+        <button
+          class="searchButton"
+          disabled={$about || $editing || $selectedItem}
+          on:click={() => ($expanded = !$expanded)}>?</button
+        >
+      </div>
+      <div>
+        <button
+          class="infoButton"
+          disabled={$cards.length === 0 || $editing || $selectedItem}
+          on:click={toggleAbout}>…</button
+        >
+      </div>
+    </div>
+
+    {#if $expanded}
+      <Search />
+    {/if}
+  </header>
+
+  {#if $about}
+    <Welcome />
+  {:else if $editing}
+    <Editor
+      surname={$current.surname}
+      givenNames={$current.givenNames}
+      affiliations={$current.affiliations}
+      fields={$current.fields}
+      ideas={$current.ideas}
+      email={$current.email}
+    />
+  {:else if $selectedItem}
+    <Detail
+      index={$cards.indexOf($selectedItem)}
+      id={$selectedItem.id}
+      surname={$selectedItem.surname}
+      givenNames={$selectedItem.givenNames}
+      affiliations={$selectedItem.affiliations}
+      fields={$selectedItem.fields}
+      ideas={$selectedItem.ideas}
+      email={$selectedItem.email}
+    />
+  {:else}
+    <div class="cards" in:fade>
+      {#if $resultCards.length > 0}
+        {#each $resultCards as card, index (card.id)}
+          <Card
+            {index}
+            id={card.id}
+            surname={card.surname}
+            givenNames={card.givenNames}
+            affiliations={card.affiliations}
+            fields={card.fields}
+            email={card.email}
+          />
+        {/each}
+      {:else}
+        {#each $cards as card, index (card.id)}
+          <Card
+            {index}
+            id={card.id}
+            surname={card.surname}
+            givenNames={card.givenNames}
+            affiliations={card.affiliations}
+            fields={card.fields}
+            email={card.email}
+          />
+        {/each}
+      {/if}
+    </div>
+  {/if}
+</div>
+
 <style>
   button {
     height: 2.3rem;
@@ -210,81 +295,3 @@
     }
   }
 </style>
-
-<div class="container">
-  <header>
-    <div class="titleRow">
-      <div class="title"><a href="/">Scholodex</a></div>
-      <div>
-        <button
-          class="newButton"
-          disabled={$editing || $selectedItem}
-          on:click={newCard}>+</button>
-      </div>
-      <div>
-        <button
-          class="searchButton"
-          disabled={$about || $editing || $selectedItem}
-          on:click={() => ($expanded = !$expanded)}>?</button>
-      </div>
-      <div>
-        <button
-          class="infoButton"
-          disabled={$cards.length === 0 || $editing || $selectedItem}
-          on:click={toggleAbout}>…</button>
-      </div>
-    </div>
-
-    {#if $expanded}
-      <Search />
-    {/if}
-  </header>
-
-  {#if $about}
-    <Welcome />
-  {:else if $editing}
-    <Editor
-      surname={$current.surname}
-      givenNames={$current.givenNames}
-      affiliations={$current.affiliations}
-      fields={$current.fields}
-      ideas={$current.ideas}
-      email={$current.email} />
-  {:else if $selectedItem}
-    <Detail
-      index={$cards.indexOf($selectedItem)}
-      id={$selectedItem.id}
-      surname={$selectedItem.surname}
-      givenNames={$selectedItem.givenNames}
-      affiliations={$selectedItem.affiliations}
-      fields={$selectedItem.fields}
-      ideas={$selectedItem.ideas}
-      email={$selectedItem.email} />
-  {:else}
-    <div class="cards" in:fade>
-      {#if $resultCards.length > 0}
-        {#each $resultCards as card, index (card.id)}
-          <Card
-            {index}
-            id={card.id}
-            surname={card.surname}
-            givenNames={card.givenNames}
-            affiliations={card.affiliations}
-            fields={card.fields}
-            email={card.email} />
-        {/each}
-      {:else}
-        {#each $cards as card, index (card.id)}
-          <Card
-            {index}
-            id={card.id}
-            surname={card.surname}
-            givenNames={card.givenNames}
-            affiliations={card.affiliations}
-            fields={card.fields}
-            email={card.email} />
-        {/each}
-      {/if}
-    </div>
-  {/if}
-</div>

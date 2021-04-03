@@ -119,6 +119,43 @@
   });
 </script>
 
+<div class="detail" on:keydown={handleKeydown} in:fade>
+  <div class="doubleRow">
+    <input
+      bind:value={surname}
+      bind:this={surnameField}
+      placeholder="Surname"
+    /><input bind:value={givenNames} placeholder="Name(s)" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={affiliationOne} placeholder="Affiliation 1" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={affiliationTwo} placeholder="Affiliation 2 (optional)" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={fieldOne} placeholder="Field 1" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={fieldTwo} placeholder="Field 2 (optional)" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={ideaOne} placeholder="Key idea 1" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={ideaTwo} placeholder="Key idea 2 (optional)" />
+  </div>
+  <div class="singleRow">
+    <input bind:value={ideaThree} placeholder="Key idea 3 (optional)" />
+  </div>
+  <div class="singleRow"><input bind:value={email} placeholder="Email" /></div>
+  <div class="buttonsRow">
+    <button class="submitButton" on:click={generateCard}>Submit</button><button
+      on:click={backHome}>Cancel</button
+    >
+  </div>
+</div>
+
 <style>
   button,
   input {
@@ -158,40 +195,3 @@
     margin-right: 1rem;
   }
 </style>
-
-<div class="detail" on:keydown={handleKeydown} in:fade>
-  <div class="doubleRow">
-    <input
-      bind:value={surname}
-      bind:this={surnameField}
-      placeholder="Surname" /><input
-      bind:value={givenNames}
-      placeholder="Name(s)" />
-  </div>
-  <div class="singleRow">
-    <input bind:value={affiliationOne} placeholder="Affiliation 1" />
-  </div>
-  <div class="singleRow">
-    <input bind:value={affiliationTwo} placeholder="Affiliation 2 (optional)" />
-  </div>
-  <div class="singleRow">
-    <input bind:value={fieldOne} placeholder="Field 1" />
-  </div>
-  <div class="singleRow">
-    <input bind:value={fieldTwo} placeholder="Field 2 (optional)" />
-  </div>
-  <div class="singleRow">
-    <input bind:value={ideaOne} placeholder="Key idea 1" />
-  </div>
-  <div class="singleRow">
-    <input bind:value={ideaTwo} placeholder="Key idea 2 (optional)" />
-  </div>
-  <div class="singleRow">
-    <input bind:value={ideaThree} placeholder="Key idea 3 (optional)" />
-  </div>
-  <div class="singleRow"><input bind:value={email} placeholder="Email" /></div>
-  <div class="buttonsRow">
-    <button class="submitButton" on:click={generateCard}>Submit</button><button
-      on:click={backHome}>Cancel</button>
-  </div>
-</div>

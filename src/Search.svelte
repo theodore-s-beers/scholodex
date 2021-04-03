@@ -38,6 +38,21 @@
   onDestroy(() => ($resultCards = []));
 </script>
 
+<div class="searchBarWrapper" in:fade>
+  <input
+    class="searchBar"
+    placeholder="Enter one search term (case-insensitive)"
+    bind:this={searchField}
+    bind:value={searchTerm}
+    on:keydown={handleSearch}
+    type="text"
+    autocapitalize="none"
+    spellcheck={false}
+    autocomplete="off"
+    autocorrect="off"
+  /><button class="searchButton" on:click={carryOutSearch}>⚲</button>
+</div>
+
 <style>
   .searchBar {
     width: 100%;
@@ -67,19 +82,3 @@
     background: none;
   }
 </style>
-
-<div class="searchBarWrapper" in:fade>
-  <input
-    class="searchBar"
-    placeholder="Enter one search term (case-insensitive)"
-    bind:this={searchField}
-    bind:value={searchTerm}
-    on:keydown={handleSearch}
-    type="text"
-    autocapitalize="none"
-    spellcheck={false}
-    autocomplete="off"
-    autocorrect="off" /><button
-    class="searchButton"
-    on:click={carryOutSearch}>⚲</button>
-</div>
