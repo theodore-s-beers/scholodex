@@ -11,11 +11,11 @@
   } from "./stores.svelte";
   import { complexCompare, sampleCards } from "./utils.svelte";
 
-  import Card from "Card.svelte";
-  import Detail from "Detail.svelte";
-  import Editor from "Editor.svelte";
-  import Search from "Search.svelte";
-  import Welcome from "Welcome.svelte";
+  import Card from "./Card.svelte";
+  import Detail from "./Detail.svelte";
+  import Editor from "./Editor.svelte";
+  import Search from "./Search.svelte";
+  import Welcome from "./Welcome.svelte";
 
   //
   // Basic display of cards
