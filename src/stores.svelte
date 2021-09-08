@@ -3,7 +3,7 @@
   import type { ContactCard } from "./utils.svelte";
 
   const emptyCardArray: ContactCard[] = [];
-  export const emptyCard: ContactCard = {
+  const emptyCard: ContactCard = {
     id: "",
     surname: "",
     givenNames: "",

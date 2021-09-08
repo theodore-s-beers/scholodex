@@ -2,7 +2,9 @@
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import { v4 as uuidv4 } from "uuid";
+
   import { cards, current, editing, selectedItem } from "./stores.svelte";
+  import type { ContactCard } from "./utils.svelte";
 
   export let affiliations: string;
   export let email = "";
@@ -46,15 +48,11 @@
   }
 
   function deleteOld() {
-    const deprecated = $cards.find((x) => x.id === $current.id);
-    if (deprecated === undefined) {
-      console.log("Something went very wrong...");
-    } else {
-      const deprecatedIndex = $cards.indexOf(deprecated);
-      $cards = $cards
-        .slice(0, deprecatedIndex)
-        .concat($cards.slice(deprecatedIndex + 1));
-    }
+    const deprecated = $cards.find((x) => x.id === $current.id) as ContactCard;
+    const deprecatedIndex = $cards.indexOf(deprecated);
+    $cards = $cards
+      .slice(0, deprecatedIndex)
+      .concat($cards.slice(deprecatedIndex + 1));
   }
 
   function generateCard() {
@@ -94,13 +92,8 @@
       });
       if ($current.id) {
         deleteOld();
-        const newItem = $cards.find((x) => x.id === newId);
-        if (newItem === undefined) {
-          console.log("Something went very wrong...");
-        } else {
-          $selectedItem = newItem;
-          window.location.hash = $selectedItem.id;
-        }
+        $selectedItem = $cards.find((x) => x.id === newId) as ContactCard;
+        window.location.hash = $selectedItem.id;
       }
       backHome();
     }

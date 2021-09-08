@@ -6,7 +6,6 @@
     cards,
     current,
     editing,
-    emptyCard,
     expanded,
     resultCards,
     selectedItem,
@@ -57,7 +56,15 @@
     $about = false;
     $editing = false;
     $expanded = false;
-    $selectedItem = emptyCard;
+    $selectedItem = {
+      id: "",
+      surname: "",
+      givenNames: "",
+      affiliations: "",
+      fields: "",
+      ideas: "",
+      email: "",
+    };
 
     // If no hash, set to "home"
     if (!window.location.hash) {
