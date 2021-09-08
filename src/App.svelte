@@ -183,7 +183,7 @@
       ideas={$current.ideas}
       email={$current.email}
     />
-  {:else if $selectedItem}
+  {:else if $selectedItem.id !== ""}
     <Detail
       index={$cards.indexOf($selectedItem)}
       id={$selectedItem.id}
