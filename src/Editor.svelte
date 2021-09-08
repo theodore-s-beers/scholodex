@@ -47,10 +47,14 @@
 
   function deleteOld() {
     const deprecated = $cards.find((x) => x.id === $current.id);
-    const deprecatedIndex = $cards.indexOf(deprecated);
-    $cards = $cards
-      .slice(0, deprecatedIndex)
-      .concat($cards.slice(deprecatedIndex + 1));
+    if (deprecated === undefined) {
+      console.log("Something went very wrong...");
+    } else {
+      const deprecatedIndex = $cards.indexOf(deprecated);
+      $cards = $cards
+        .slice(0, deprecatedIndex)
+        .concat($cards.slice(deprecatedIndex + 1));
+    }
   }
 
   function generateCard() {
@@ -90,8 +94,13 @@
       });
       if ($current.id) {
         deleteOld();
-        $selectedItem = $cards.find((x) => x.id === newId);
-        window.location.hash = $selectedItem.id;
+        const newItem = $cards.find((x) => x.id === newId);
+        if (newItem === undefined) {
+          console.log("Something went very wrong...");
+        } else {
+          $selectedItem = newItem;
+          window.location.hash = $selectedItem.id;
+        }
       }
       backHome();
     }

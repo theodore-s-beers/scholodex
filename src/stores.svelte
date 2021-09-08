@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
   import { writable } from "svelte/store";
+  import type { ContactCard } from "./utils.svelte";
 
-  export const about = writable(false);
-  export const cards = writable([]);
-  export const current = writable({
+  const emptyCardArray: ContactCard[] = [];
+  export const emptyCard: ContactCard = {
     id: "",
     surname: "",
     givenNames: "",
@@ -11,9 +11,13 @@
     fields: "",
     ideas: "",
     email: "",
-  });
+  };
+
+  export const about = writable(false);
+  export const cards = writable(emptyCardArray);
+  export const current = writable(emptyCard);
   export const editing = writable(false);
   export const expanded = writable(false);
-  export const resultCards = writable([]);
-  export const selectedItem = writable(null);
+  export const resultCards = writable(emptyCardArray);
+  export const selectedItem = writable(emptyCard);
 </script>
