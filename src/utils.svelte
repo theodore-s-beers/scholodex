@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { v4 as uuidv4 } from "uuid";
 
-  interface ContactCard {
+  export interface ContactCard {
     id: string;
     surname: string;
     givenNames: string;

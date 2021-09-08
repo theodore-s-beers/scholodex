@@ -7,10 +7,10 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "prettify": "find . -name '*.js' ! -path './node_modules/*' ! -path './public/build/*' -exec prettier --write {} ';'",
-    "prettify-ts": "find . -name '*.ts' ! -path './node_modules/*' ! -path './public/build/*' -exec prettier --write {} ';'",
-    "standardize": "find . -name '*.js' ! -path './node_modules/*' ! -path './public/build/*' -exec standard --fix {} ';'",
-    "standardize-ts": "find . -name '*.ts' ! -path './node_modules/*' ! -path './public/build/*' -exec ts-standard --fix {} ';'",
+    "prettify": "fd -e js -x prettier --write {}",
+    "prettify-ts": "fd -e ts -x prettier --write {}",
+    "standardize": "fd -e js -x standard --fix {}",
+    "standardize-ts": "fd -e ts -x ts-standard --fix {}",
     "start": "sirv public",
     "validate": "svelte-check"
   },

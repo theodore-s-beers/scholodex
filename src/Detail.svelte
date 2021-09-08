@@ -1,6 +1,12 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { cards, current, editing, selectedItem } from "./stores.svelte";
+  import {
+    cards,
+    current,
+    editing,
+    selectedItem,
+    emptyCard,
+  } from "./stores.svelte";
 
   export let affiliations: string;
   export let email: string;
@@ -21,7 +27,7 @@
 
   function deleteCard() {
     $cards = $cards.slice(0, index).concat($cards.slice(index + 1));
-    $selectedItem = null;
+    $selectedItem = emptyCard;
   }
 
   function fillGaps() {

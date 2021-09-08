@@ -1,10 +1,12 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
+
   import {
     about,
     cards,
     current,
     editing,
+    emptyCard,
     expanded,
     resultCards,
     selectedItem,
@@ -23,9 +25,10 @@
 
   // Try to load cards from local storage
   // Otherwise start with an empty array
-  try {
-    $cards = JSON.parse(localStorage.getItem("scholodex-cards")) || [];
-  } catch (err) {
+  const localCards = localStorage.getItem("scholodex-cards");
+  if (localCards !== null) {
+    $cards = JSON.parse(localCards);
+  } else {
     $cards = [];
   }
 
@@ -54,7 +57,7 @@
     $about = false;
     $editing = false;
     $expanded = false;
-    $selectedItem = null;
+    $selectedItem = emptyCard;
 
     // If no hash, set to "home"
     if (!window.location.hash) {
@@ -144,21 +147,21 @@
       <div>
         <button
           class="newButton"
-          disabled={$editing || $selectedItem}
+          disabled={$editing || $selectedItem.id !== ""}
           on:click={newCard}>+</button
         >
       </div>
       <div>
         <button
           class="searchButton"
-          disabled={$about || $editing || $selectedItem}
+          disabled={$about || $editing || $selectedItem.id !== ""}
           on:click={() => ($expanded = !$expanded)}>?</button
         >
       </div>
       <div>
         <button
           class="infoButton"
-          disabled={$cards.length === 0 || $editing || $selectedItem}
+          disabled={$cards.length === 0 || $editing || $selectedItem.id !== ""}
           on:click={toggleAbout}>…</button
         >
       </div>
@@ -180,7 +183,7 @@
       ideas={$current.ideas}
       email={$current.email}
     />
-  {:else if $selectedItem}
+  {:else if $selectedItem.id !== ""}
     <Detail
       index={$cards.indexOf($selectedItem)}
       id={$selectedItem.id}
